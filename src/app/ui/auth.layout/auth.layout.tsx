@@ -8,11 +8,11 @@ export default function SignInUpLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
-    <div className="lg:flex">
-      <div className={`h-screen p-5 lg:w-4/6 ${tailwindEnum.flexCenter}`}>
-        <div className="xl:w-[80%] min-[1640px]:w-[60%]">{children}</div>
+    <div className="flex justify-center h-screen items-center px-10 sm:px-20 ">
+      <div className="sign-in-banner top-0 left-0 fixed z-0 h-screen w-screen">
+        <div className="sign-in-banner-gradient h-full w-full" />
       </div>
-      <div className="sign-in-banner lg:w-2/6 " />
+      {children}
     </div>
   );
 }

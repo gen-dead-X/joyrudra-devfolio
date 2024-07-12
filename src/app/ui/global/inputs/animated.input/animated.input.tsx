@@ -56,7 +56,7 @@ export default function AnimatedInput({
         />
         <label
           htmlFor={id}
-          className="bg-[#f3f4f6] text-black dark:bg-[#171717]  dark:text-white"
+          className="bg-[#ffffff] text-black dark:bg-[#020617]  dark:text-white"
         >
           {label}
         </label>

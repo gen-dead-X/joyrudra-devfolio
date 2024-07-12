@@ -1,5 +1,29 @@
 .sign-in-banner {
-  background-image: url("https://images.pexels.com/photos/212324/pexels-photo-212324.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  background-image: url("https://images.pexels.com/photos/731891/pexels-photo-731891.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
   background-repeat: no-repeat;
   background-size: cover;
+  filter: blur(2px);
+
+  .sign-in-banner-gradient {
+    background: rgb(1, 13, 0);
+    background: linear-gradient(
+      0deg,
+      rgba(1, 13, 0, 0.768) 10%,
+      rgb(255, 255, 255) 75%
+    );
+  }
+}
+
+body.dark {
+  .sign-in-banner {
+    background-image: url("https://images.pexels.com/photos/1933316/pexels-photo-1933316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+
+    .sign-in-banner-gradient {
+      background: linear-gradient(
+        0deg,
+        #020617 35%,
+        rgba(255, 255, 255, 0) 80%
+      );
+    }
+  }
 }

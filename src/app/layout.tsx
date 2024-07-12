@@ -1,14 +1,14 @@
 "use client";
 
 // import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.scss";
 import { UserContextProvider } from "./context/user.content";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/helpers/api";
 import { SnackbarProvider } from "notistack";
 
-const inter = Roboto({
+const inter = Poppins({
   weight: "400",
   subsets: ["latin"],
   fallback: ["Inter"],

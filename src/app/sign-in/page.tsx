@@ -48,21 +48,21 @@ export default function SignIn() {
       <FormProvider {...form}>
         <form
           onSubmit={(e) => form.handleSubmit(handleSignIn)(e)}
-          className="xs:w-full flex w-full flex-col justify-between gap-10 overflow-auto rounded-xl  px-5 py-10 sm:px-10 xl:px-20 xl:py-20"
+          className="flex relative z-[1] flex-col gap-10 w-full md:w-2/3 xl:w-1/2 2xl:w-1/3 bg-white p-10 rounded-2xl dark:bg-slate-950"
         >
-          <h1 className="text-start text-3xl ">
-            Welcome to{" "}
-            <span className="heading-highlight font-bold tracking-[2px]">
+          <h1 className="text-center text-3xl">
+            Welcome to <br />
+            <p className="heading-highlight tracking-[2px] p-2 font-extrabold">
               NEST JS DEMO
-            </span>
+            </p>
           </h1>
-          <div className="">
+          <div className="flex flex-col items-center">
             <h1 className="bg-radial-red text-3xl font-semibold text-[#333] dark:text-gray-200">
               Sign in
             </h1>
             <p className="mt-5 text-[#666]">To access your account</p>
           </div>
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col items-center gap-8">
             <AnimatedInput
               name="email"
               label="Email"
@@ -86,7 +86,7 @@ export default function SignIn() {
                   : form.getValues("password")
               }
             />
-            <button type="submit">
+            <button type="submit" className="w-full">
               <SubmitButtonDefault
                 className={`relative rounded-full ${
                   logInPending && " submit-animation "
@@ -97,7 +97,7 @@ export default function SignIn() {
             </button>
           </div>
 
-          <div className="flex items-center gap-5">
+          <div className="flex items-center justify-center gap-5">
             <Link
               className="rounded-full bg-black p-2 px-5 text-center text-white hover:bg-gray-500 dark:bg-gray-300 dark:text-black "
               href={"/sign-up"}

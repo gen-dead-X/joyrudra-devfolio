@@ -47,16 +47,16 @@ export default function SignUp() {
       <FormProvider {...form}>
         <form
           onSubmit={(e) => form.handleSubmit(onSignUp)(e)}
-          className="xs:w-full flex w-full flex-col justify-between gap-10 overflow-auto rounded-xl px-5 py-10 sm:px-10 xl:px-20 xl:py-20"
+          className="flex relative z-[1] flex-col gap-10 w-full md:w-2/3 xl:w-1/2 2xl:w-1/3 bg-white p-10 rounded-2xl dark:bg-slate-950"
         >
-          <div>
-            <h1 className="bg-radial-red text-3xl font-semibold text-[#333] dark:text-gray-200">
+          <div className="flex flex-col items-center">
+            <h1 className="bg-radial-red text-3xl font-extrabold text-[#333] dark:text-gray-200">
               Sign Up
             </h1>
             <p className="mt-5 text-[#666]">Let&apos;s Put You on track</p>
           </div>
 
-          <div className="flex  flex-col gap-8">
+          <div className="flex items-center flex-col gap-8">
             <AnimatedInput
               name="name"
               label="Name"
@@ -95,7 +95,7 @@ export default function SignUp() {
                 config.DEV_MODE === "1" ? config.LOGIN_PASSWORD : ""
               }
             />
-            <button type="submit">
+            <button type="submit" className="w-full">
               <SubmitButtonDefault
                 className={`relative rounded-full ${
                   isPending && " submit-animation"
@@ -105,7 +105,7 @@ export default function SignUp() {
               </SubmitButtonDefault>
             </button>
           </div>
-          <div className="flex flex-col items-start gap-5 md:flex-row md:items-center ">
+          <div className="flex flex-col items-center justify-center gap-5 md:flex-row md:items-center ">
             <span>Already a Registered Member? </span>
             <Link
               className="rounded-full bg-black p-2 px-5 text-white hover:bg-gray-500 dark:bg-gray-300 dark:text-black "
