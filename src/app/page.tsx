@@ -1,3 +1,18 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
+import { TOKEN } from "@/shared/enums/global";
+
 export default function Home() {
-  return <main>Hello World!</main>;
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!localStorage.getItem(TOKEN.ACCESS_TOKEN)) {
+      router.push("/sign-in");
+    }
+  }, []);
+
+  return <div>Home</div>;
 }
