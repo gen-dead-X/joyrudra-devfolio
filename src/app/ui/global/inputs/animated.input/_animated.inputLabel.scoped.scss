@@ -3,7 +3,7 @@
   position: relative;
   font-size: 1rem;
   input {
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     background-color: transparent;
     transition: all 0.3s;
     padding: 1rem;
@@ -16,7 +16,7 @@
     &:not(:placeholder-shown) ~ label,
     &:focus ~ label {
       top: 0;
-      left: 10px;
+      left: 15px;
       padding: 0 2px;
       transition: 0.3s;
       font-size: 16px;
@@ -30,7 +30,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: 10px;
+    left: 15px;
     pointer-events: none;
     transition: 0.3s;
   }

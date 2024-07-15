@@ -88,7 +88,7 @@ export default function SignIn() {
             />
             <button type="submit" className="w-full">
               <SubmitButtonDefault
-                className={`relative rounded-full ${
+                className={`relative rounded-lg ${
                   logInPending && " submit-animation "
                 }`}
               >

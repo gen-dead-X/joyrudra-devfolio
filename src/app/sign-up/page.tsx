@@ -97,7 +97,7 @@ export default function SignUp() {
             />
             <button type="submit" className="w-full">
               <SubmitButtonDefault
-                className={`relative rounded-full ${
+                className={`relative rounded-lg ${
                   isPending && " submit-animation"
                 }`}
               >
@@ -106,7 +106,9 @@ export default function SignUp() {
             </button>
           </div>
           <div className="flex flex-col items-center justify-center gap-5 md:flex-row md:items-center ">
-            <span>Already a Registered Member? </span>
+            <span className="dark:text-gray-500">
+              Already a Registered Member?{" "}
+            </span>
             <Link
               className="rounded-full bg-black p-2 px-5 text-white hover:bg-gray-500 dark:bg-gray-300 dark:text-black "
               href={"/"}
