@@ -9,6 +9,7 @@
     padding: 1rem;
     outline: none;
     position: relative;
+    color: black;
 
     &:focus {
       border: 2px solid rgb(0, 97, 224);
@@ -21,7 +22,7 @@
       transition: 0.3s;
       font-size: 16px;
       color: rgb(133, 133, 133);
-      font-weight: 500;
+      font-weight: bold;
     }
   }
   label {
@@ -33,5 +34,13 @@
     left: 15px;
     pointer-events: none;
     transition: 0.3s;
+  }
+}
+
+body.dark {
+  .input-container {
+    input {
+      color: white;
+    }
   }
 }

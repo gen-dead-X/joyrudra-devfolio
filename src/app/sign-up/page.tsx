@@ -10,6 +10,7 @@ import AnimatedInput from "../ui/global/inputs/animated.input/animated.input";
 import config from "@/config";
 import SubmitButtonDefault from "../ui/global/buttons/submit.button.default/submit.button.default";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type SignUpType = {
   name: string;
@@ -23,6 +24,8 @@ export default function SignUp() {
     resolver: yupResolver(signUpValidationSchema),
   });
 
+  const router = useRouter();
+
   const { mutate: signUp, isPending } = usePostMutationQuery<
     Profile,
     SignUpType
@@ -34,6 +37,7 @@ export default function SignUp() {
     signUp(formValue, {
       onSuccess: () => {
         /* Navigate To login */
+        router.push("/");
       },
     });
   };
