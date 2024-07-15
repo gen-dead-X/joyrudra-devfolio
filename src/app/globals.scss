@@ -19,3 +19,28 @@ body.dark {
 body {
   color: rgb(var(--foreground-rgb));
 }
+
+/* Snackbar Stylings */
+html {
+  .notistack-SnackbarContainer {
+    .notistack-CollapseWrapper {
+      .notistack-Snackbar {
+        .notistack-MuiContent {
+          justify-content: center;
+          font-size: 1.2rem !important;
+        }
+
+        @media screen and (min-width: 600px) {
+          .notistack-MuiContent {
+            font-size: 1.2rem !important;
+            // justify-content: start;
+          }
+        }
+
+        #notistack-snackbar {
+          padding: 1rem 0;
+        }
+      }
+    }
+  }
+}

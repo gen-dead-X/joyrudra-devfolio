@@ -11,6 +11,8 @@ import config from "@/config";
 import SubmitButtonDefault from "../ui/global/buttons/submit.button.default/submit.button.default";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import urls from "@/shared/enums/urls";
 
 type SignUpType = {
   name: string;
@@ -30,14 +32,14 @@ export default function SignUp() {
     Profile,
     SignUpType
   >({
-    url: "/auth/register",
+    url: urls.signUp,
   });
 
   const handleSignUp = (formValue: SignUpType) => {
     signUp(formValue, {
       onSuccess: () => {
         /* Navigate To login */
-        router.push("/");
+        router.push("/sign-in");
       },
     });
   };
@@ -109,13 +111,26 @@ export default function SignUp() {
               </SubmitButtonDefault>
             </button>
           </div>
+
+          <div className="pt-1 bg-gray-100 rounded-full" />
+
+          <div className="flex items-center justify-center">
+            <button
+              type="button"
+              className="flex items-center gap-3 px-5 p-2 border justify-center transition-all duration-200 w-fit rounded-lg hover:bg-slate-200 dark:bg-white dark:hover:bg-gray-200"
+            >
+              <Image src={"./logo/google_logo.svg"} height={25} width={25} />
+              <p>Continue With Google</p>
+            </button>
+          </div>
+
           <div className="flex flex-col items-center justify-center gap-5 md:flex-row md:items-center ">
             <span className="dark:text-gray-500">
               Already a Registered Member?{" "}
             </span>
             <Link
               className="rounded-full bg-black p-2 px-5 text-white hover:bg-gray-500 dark:bg-gray-300 dark:text-black "
-              href={"/"}
+              href={"/sign-in"}
             >
               Sign In
             </Link>

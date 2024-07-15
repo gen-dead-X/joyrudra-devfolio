@@ -28,7 +28,11 @@ export default function RootLayout({
     <html lang="en">
       <UserContextProvider>
         <QueryClientProvider client={queryClient}>
-          <SnackbarProvider autoHideDuration={3000}>
+          <SnackbarProvider
+            autoHideDuration={3000}
+            maxSnack={3}
+            className="text-2xl p-5"
+          >
             <body className={inter.className}>{children}</body>
           </SnackbarProvider>
         </QueryClientProvider>

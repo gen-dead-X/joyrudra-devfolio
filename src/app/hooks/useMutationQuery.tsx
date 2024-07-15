@@ -19,10 +19,12 @@ export const usePostMutationQuery = <T, U>({
   const defaultPostQueryFn = async (body: U): Promise<T> => {
     const response: APIRequestInterface<T> = await apiCall(url, type, body);
 
-    if (response.success && toast) {
-      SuccessNotistackToast(response?.message ?? "Success");
-    } else if (toast) {
-      SuccessNotistackToast(response.message ?? "Sorry, Something went wrong");
+    if (toast) {
+      if (response.success) {
+        SuccessNotistackToast(response?.message ?? "Success");
+      } else {
+        ErrorNotistackToast(response.message ?? "Sorry, Something went wrong");
+      }
     }
 
     return response.data;
@@ -34,7 +36,7 @@ export const usePostMutationQuery = <T, U>({
   });
 };
 
-export const useGetMutationQuery = <T, U>({
+export const useGetMutationQuery = <T,>({
   url,
   toast = true,
   ...mutationOptions
@@ -55,7 +57,7 @@ export const useGetMutationQuery = <T, U>({
     return response.data;
   };
 
-  return useMutation<T, Error, U>({
+  return useMutation<T, Error>({
     ...mutationOptions,
     mutationFn: defaultGetQueryFn,
   });

@@ -13,7 +13,9 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((config) => {
-  config.headers.Authorization = localStorage.getItem(TOKEN.ACCESS_TOKEN);
+  config.headers.Authorization = `Bearer ${localStorage.getItem(
+    TOKEN.ACCESS_TOKEN
+  )}`;
   return config;
 });
 

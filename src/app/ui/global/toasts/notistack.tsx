@@ -13,8 +13,8 @@ export const ErrorNotistackToast = (
   } = {
     variant: "error",
     anchorOrigin: {
-      vertical: "top",
-      horizontal: "left",
+      vertical: "bottom",
+      horizontal: "center",
     },
   }
 ): SnackbarKey => {
@@ -34,8 +34,8 @@ export const SuccessNotistackToast = (
   } = {
     variant: "success",
     anchorOrigin: {
-      vertical: "top",
-      horizontal: "left",
+      vertical: "bottom",
+      horizontal: "center",
     },
   }
 ): SnackbarKey => {
@@ -55,8 +55,8 @@ export const InfoNotistackToast = (
   } = {
     variant: "info",
     anchorOrigin: {
-      vertical: "top",
-      horizontal: "left",
+      vertical: "bottom",
+      horizontal: "center",
     },
   }
 ): SnackbarKey => {
@@ -76,8 +76,8 @@ export const WarningNotistackToast = (
   } = {
     variant: "warning",
     anchorOrigin: {
-      vertical: "top",
-      horizontal: "left",
+      vertical: "bottom",
+      horizontal: "center",
     },
   }
 ): SnackbarKey => {
@@ -97,8 +97,8 @@ export const GeneralNotistackToast = (
   } = {
     variant: "default",
     anchorOrigin: {
-      vertical: "top",
-      horizontal: "left",
+      vertical: "bottom",
+      horizontal: "center",
     },
   }
 ): SnackbarKey => {

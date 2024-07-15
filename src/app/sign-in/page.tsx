@@ -2,18 +2,29 @@
 
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./_signin.scoped.scss";
 import { UserContext } from "../context/user.content";
 import type { Profile } from "@/shared/types/user.type";
 import SignInUpLayout from "../ui/auth.layout/auth.layout";
 import { TOKEN } from "@/shared/enums/global";
 import { signInValidationSchema } from "@/validators/user.validators";
-import { usePostMutationQuery } from "../hooks/useMutationQuery";
+import {
+  useGetMutationQuery,
+  usePostMutationQuery,
+} from "../hooks/useMutationQuery";
 import SubmitButtonDefault from "../ui/global/buttons/submit.button.default/submit.button.default";
 import AnimatedInput from "../ui/global/inputs/animated.input/animated.input";
 import config from "@/config";
 import Link from "next/link";
+import { redirect, useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
+import urls from "@/shared/enums/urls";
+import {
+  ErrorNotistackToast,
+  SuccessNotistackToast,
+} from "../ui/global/toasts/notistack";
+import { useQuery } from "@tanstack/react-query";
 
 type LogInType = {
   email: string;
@@ -22,15 +33,64 @@ type LogInType = {
 
 export default function SignIn() {
   const { setProfile } = useContext(UserContext);
+  const searchParams = useSearchParams();
   const form = useForm<LogInType>({
     resolver: yupResolver(signInValidationSchema),
   });
+  const router = useRouter();
+  const [tokens, setTokens] = useState({ access_token: "", refresh_token: "" });
+  const { data: oAuthUrl, isPending: isOAuthPending } = useQuery<string>({
+    queryKey: [urls.oAuth],
+  });
+
+  useEffect(() => {
+    console.log({ oAuthUrl });
+  }, [oAuthUrl]);
+
+  const {
+    data: profile,
+    isPending: isValidationPending,
+    refetch: getProfile,
+  } = useQuery<{ data: Profile }>({
+    queryKey: [urls.profile],
+    enabled: false,
+  });
+
+  useEffect(() => {
+    async function handleOAuthLogin() {
+      const access_token = searchParams.get(TOKEN.ACCESS_TOKEN);
+      const refresh_token = searchParams.get(TOKEN.REFRESH_TOKEN);
+
+      if (access_token && refresh_token) {
+        setTokens({ access_token, refresh_token });
+
+        localStorage.setItem(TOKEN.ACCESS_TOKEN, access_token);
+        localStorage.setItem(TOKEN.REFRESH_TOKEN, refresh_token);
+
+        await getProfile();
+
+        console.log({ profile });
+
+        if (profile) {
+          setProfile(profile);
+          console.log({ profile });
+          SuccessNotistackToast(`Welcome Back ${profile?.name} 😍!`);
+
+          return router.push("/");
+        }
+
+        ErrorNotistackToast("Please Try Again 😢!");
+      }
+    }
+
+    handleOAuthLogin();
+  }, []);
 
   const { mutate: login, isPending: logInPending } = usePostMutationQuery<
     Profile & { access_token: string; refresh_token: string },
     LogInType
   >({
-    url: "/auth/login",
+    url: urls.signIn,
   });
 
   const handleSignIn = (formValue: LogInType) => {
@@ -39,6 +99,7 @@ export default function SignIn() {
         setProfile(data);
         localStorage.setItem(TOKEN.ACCESS_TOKEN, data.access_token);
         localStorage.setItem(TOKEN.REFRESH_TOKEN, data.refresh_token);
+        router.push("/");
       },
     });
   };
@@ -94,6 +155,22 @@ export default function SignIn() {
               >
                 Sign In
               </SubmitButtonDefault>
+            </button>
+          </div>
+
+          <div className="pt-1 bg-gray-100 rounded-full" />
+
+          <div className="flex items-center justify-center">
+            <button
+              type="button"
+              onClick={() => {
+                // fetchOAuthUrl();
+                window.open(oAuthUrl);
+              }}
+              className="flex items-center gap-3 px-5 p-2 border justify-center transition-all duration-200 w-fit rounded-lg hover:bg-slate-200 dark:bg-white dark:hover:bg-gray-200"
+            >
+              <Image src={"./logo/google_logo.svg"} height={25} width={25} />
+              <p>Continue With Google</p>
             </button>
           </div>
 
