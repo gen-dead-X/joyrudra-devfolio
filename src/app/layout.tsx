@@ -1,6 +1,5 @@
 "use client";
 
-// import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.scss";
 import { UserContextProvider } from "./context/user.content";
@@ -13,11 +12,6 @@ const inter = Poppins({
   subsets: ["latin"],
   fallback: ["Inter"],
 });
-
-// export const metadata: Metadata = {
-//   title: "NestJS Demo",
-//   description: "A Test App to be integrated with nestJS",
-// };
 
 export default function RootLayout({
   children,
