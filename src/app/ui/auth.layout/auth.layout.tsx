@@ -2,11 +2,19 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 import "./_auth.layout.scoped.scss";
+import { useRouter } from "next/navigation";
 
 export default function SignInUpLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   const blobRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      router.push("/");
+    }
+  }, [router]);
 
   useEffect(() => {
     function handleBlob(e: MouseEvent) {
@@ -23,7 +31,7 @@ export default function SignInUpLayout({
     document.addEventListener("mousemove", handleBlob);
 
     () => document.removeEventListener("mousemove", handleBlob);
-  });
+  }, []);
 
   return (
     <>

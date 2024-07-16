@@ -35,7 +35,6 @@ export default function SignIn() {
   const router = useRouter();
   const [tokens, setTokens] = useState({ access_token: "", refresh_token: "" });
   const { data: oAuthUrl, isPending: isOAuthPending } = useQuery<string>({
-    enabled: false,
     queryKey: [urls.oAuth],
   });
   const {
@@ -73,18 +72,13 @@ export default function SignIn() {
     const refreshToken = searchParams.get(TOKEN.REFRESH_TOKEN) as string;
 
     if (window.location.href.includes("access_token") && accessToken) {
-      localStorage.setItem(TOKEN.ACCESS_TOKEN, accessToken);
-      localStorage.setItem(TOKEN.REFRESH_TOKEN, refreshToken);
-
       window.opener.postMessage(
         { accessToken, refreshToken },
         window.location.origin
       );
       window.close();
     }
-
-    router.push("/");
-  }, [searchParams]);
+  }, [router]);
 
   return (
     <SignInUpLayout>
@@ -148,19 +142,22 @@ export default function SignIn() {
             <button
               type="button"
               onClick={() => {
-                // fetchOAuthUrl();
-                window.open(oAuthUrl, "_blank", "width=500,height=600");
+                window.open(oAuthUrl);
 
                 window.addEventListener("message", (event) => {
                   if (event.origin !== window.location.origin) {
                     return;
                   }
 
-                  const { accessToken } = event.data;
+                  const { accessToken, refreshToken } = event.data;
                   if (accessToken) {
-                    // Use the accessToken for further authentication or API calls
-                    console.log("Access Token:", accessToken);
+                    localStorage.setItem(TOKEN.ACCESS_TOKEN, accessToken);
+                    localStorage.setItem(TOKEN.REFRESH_TOKEN, refreshToken);
+
+                    router.push("/");
                   }
+
+                  window.removeEventListener("message", () => {});
                 });
               }}
               className="flex items-center gap-3 px-5 p-2 border justify-center transition-all duration-200 w-fit rounded-lg hover:bg-slate-200 dark:bg-white dark:hover:bg-gray-200"

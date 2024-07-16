@@ -119,7 +119,12 @@ export default function SignUp() {
               type="button"
               className="flex items-center gap-3 px-5 p-2 border justify-center transition-all duration-200 w-fit rounded-lg hover:bg-slate-200 dark:bg-white dark:hover:bg-gray-200"
             >
-              <Image src={"./logo/google_logo.svg"} height={25} width={25} />
+              <Image
+                alt="google"
+                src={"./logo/google_logo.svg"}
+                height={25}
+                width={25}
+              />
               <p>Continue With Google</p>
             </button>
           </div>
