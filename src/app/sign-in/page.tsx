@@ -3,28 +3,23 @@
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
-import "./_signin.scoped.scss";
 import { UserContext } from "../context/user.content";
 import type { Profile } from "@/shared/types/user.type";
 import SignInUpLayout from "../ui/auth.layout/auth.layout";
 import { TOKEN } from "@/shared/enums/global";
 import { signInValidationSchema } from "@/validators/user.validators";
-import {
-  useGetMutationQuery,
-  usePostMutationQuery,
-} from "../hooks/useMutationQuery";
+import { usePostMutationQuery } from "../hooks/useMutationQuery";
 import SubmitButtonDefault from "../ui/global/buttons/submit.button.default/submit.button.default";
 import AnimatedInput from "../ui/global/inputs/animated.input/animated.input";
 import config from "@/config";
 import Link from "next/link";
-import { redirect, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import urls from "@/shared/enums/urls";
-import {
-  ErrorNotistackToast,
-  SuccessNotistackToast,
-} from "../ui/global/toasts/notistack";
 import { useQuery } from "@tanstack/react-query";
+import { phudu } from "../fonts/fonts";
+
+import "./_signin.scoped.scss";
 
 type LogInType = {
   email: string;
@@ -40,13 +35,9 @@ export default function SignIn() {
   const router = useRouter();
   const [tokens, setTokens] = useState({ access_token: "", refresh_token: "" });
   const { data: oAuthUrl, isPending: isOAuthPending } = useQuery<string>({
+    enabled: false,
     queryKey: [urls.oAuth],
   });
-
-  useEffect(() => {
-    console.log({ oAuthUrl });
-  }, [oAuthUrl]);
-
   const {
     data: profile,
     isPending: isValidationPending,
@@ -55,37 +46,6 @@ export default function SignIn() {
     queryKey: [urls.profile],
     enabled: false,
   });
-
-  useEffect(() => {
-    async function handleOAuthLogin() {
-      const access_token = searchParams.get(TOKEN.ACCESS_TOKEN);
-      const refresh_token = searchParams.get(TOKEN.REFRESH_TOKEN);
-
-      if (access_token && refresh_token) {
-        setTokens({ access_token, refresh_token });
-
-        localStorage.setItem(TOKEN.ACCESS_TOKEN, access_token);
-        localStorage.setItem(TOKEN.REFRESH_TOKEN, refresh_token);
-
-        await getProfile();
-
-        console.log({ profile });
-
-        if (profile) {
-          setProfile(profile);
-          console.log({ profile });
-          SuccessNotistackToast(`Welcome Back ${profile?.name} 😍!`);
-
-          return router.push("/");
-        }
-
-        ErrorNotistackToast("Please Try Again 😢!");
-      }
-    }
-
-    handleOAuthLogin();
-  }, []);
-
   const { mutate: login, isPending: logInPending } = usePostMutationQuery<
     Profile & { access_token: string; refresh_token: string },
     LogInType
@@ -104,6 +64,28 @@ export default function SignIn() {
     });
   };
 
+  useEffect(() => {
+    console.log({ oAuthUrl });
+  }, [oAuthUrl]);
+
+  useEffect(() => {
+    const accessToken = searchParams.get(TOKEN.ACCESS_TOKEN) as string;
+    const refreshToken = searchParams.get(TOKEN.REFRESH_TOKEN) as string;
+
+    if (window.location.href.includes("access_token") && accessToken) {
+      localStorage.setItem(TOKEN.ACCESS_TOKEN, accessToken);
+      localStorage.setItem(TOKEN.REFRESH_TOKEN, refreshToken);
+
+      window.opener.postMessage(
+        { accessToken, refreshToken },
+        window.location.origin
+      );
+      window.close();
+    }
+
+    router.push("/");
+  }, [searchParams]);
+
   return (
     <SignInUpLayout>
       <FormProvider {...form}>
@@ -111,9 +93,11 @@ export default function SignIn() {
           onSubmit={(e) => form.handleSubmit(handleSignIn)(e)}
           className="flex relative z-[1] flex-col gap-10 w-full md:w-2/3 xl:w-1/2 2xl:w-1/3 bg-white p-10 rounded-2xl dark:bg-slate-950"
         >
-          <h1 className="text-center text-3xl">
+          <h1 className="text-center text-xl dark:text-white">
             Welcome to <br />
-            <p className="heading-highlight tracking-[2px] p-2 font-extrabold">
+            <p
+              className={`heading-highlight text-4xl p-2 font-extrabold ${phudu.className}`}
+            >
               NEST JS DEMO
             </p>
           </h1>
@@ -165,11 +149,28 @@ export default function SignIn() {
               type="button"
               onClick={() => {
                 // fetchOAuthUrl();
-                window.open(oAuthUrl);
+                window.open(oAuthUrl, "_blank", "width=500,height=600");
+
+                window.addEventListener("message", (event) => {
+                  if (event.origin !== window.location.origin) {
+                    return;
+                  }
+
+                  const { accessToken } = event.data;
+                  if (accessToken) {
+                    // Use the accessToken for further authentication or API calls
+                    console.log("Access Token:", accessToken);
+                  }
+                });
               }}
               className="flex items-center gap-3 px-5 p-2 border justify-center transition-all duration-200 w-fit rounded-lg hover:bg-slate-200 dark:bg-white dark:hover:bg-gray-200"
             >
-              <Image src={"./logo/google_logo.svg"} height={25} width={25} />
+              <Image
+                alt="google-logo"
+                src={"./logo/google_logo.svg"}
+                height={25}
+                width={25}
+              />
               <p>Continue With Google</p>
             </button>
           </div>

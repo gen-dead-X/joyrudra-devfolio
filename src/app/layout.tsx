@@ -26,17 +26,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <UserContextProvider>
-        <QueryClientProvider client={queryClient}>
-          <SnackbarProvider
-            autoHideDuration={3000}
-            maxSnack={3}
-            className="text-2xl p-5"
-          >
-            <body className={inter.className}>{children}</body>
-          </SnackbarProvider>
-        </QueryClientProvider>
-      </UserContextProvider>
+      <body className={inter.className}>
+        <UserContextProvider>
+          <QueryClientProvider client={queryClient}>
+            <SnackbarProvider
+              autoHideDuration={3000}
+              maxSnack={3}
+              className="text-2xl p-5"
+            >
+              {children}
+            </SnackbarProvider>
+          </QueryClientProvider>
+        </UserContextProvider>
+      </body>
     </html>
   );
 }
