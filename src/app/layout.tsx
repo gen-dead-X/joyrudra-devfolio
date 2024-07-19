@@ -6,6 +6,7 @@ import { UserContextProvider } from "./context/user.content";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/helpers/api";
 import { SnackbarProvider } from "notistack";
+import Navbar from "./ui/navbar/navbar";
 
 const inter = Poppins({
   weight: "400",
@@ -28,6 +29,7 @@ export default function RootLayout({
               maxSnack={3}
               className="text-2xl p-5"
             >
+              <Navbar />
               {children}
             </SnackbarProvider>
           </QueryClientProvider>

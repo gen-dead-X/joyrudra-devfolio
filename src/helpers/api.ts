@@ -31,9 +31,16 @@ instance.interceptors.response.use(
       // status code 401 is unauthorized
       if (error.response?.status === 401) {
         try {
-          const response = await instance.post("/auth/refresh-token", {
-            refreshToken: localStorage.getItem(TOKEN.REFRESH_TOKEN),
-          });
+          const response = await axios.get(
+            `${config.BASE_URL}/auth/refresh-token`,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem(
+                  TOKEN.REFRESH_TOKEN
+                )}`,
+              },
+            }
+          );
 
           if (!response.data.success) {
             throw new Error("Request Failed!");
@@ -48,12 +55,9 @@ instance.interceptors.response.use(
 
           return instance(originalRequest);
         } catch (error) {
-          if (error instanceof AxiosError) {
-            localStorage.clear();
-            window.location.replace("/");
-            return;
-          }
-          console.log("Caught An Unknown Error : ", error);
+          localStorage.clear();
+          window.location.replace("/");
+          return;
         }
       }
     }

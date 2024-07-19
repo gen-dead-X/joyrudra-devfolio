@@ -37,14 +37,6 @@ export default function SignIn() {
   const { data: oAuthUrl, isPending: isOAuthPending } = useQuery<string>({
     queryKey: [urls.oAuth],
   });
-  const {
-    data: profile,
-    isPending: isValidationPending,
-    refetch: getProfile,
-  } = useQuery<{ data: Profile }>({
-    queryKey: [urls.profile],
-    enabled: false,
-  });
   const { mutate: login, isPending: logInPending } = usePostMutationQuery<
     Profile & { access_token: string; refresh_token: string },
     LogInType
