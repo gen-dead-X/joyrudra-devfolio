@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 
 import { UserContext } from "@/app/context/user.content";
@@ -10,13 +11,23 @@ import { Skeleton } from "antd";
 /* Icons */
 import { HiMiniBars2 } from "react-icons/hi2";
 import { RxCross2 } from "react-icons/rx";
-import { motion, type Variants } from "framer-motion";
-import Link from "next/link";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  type Variants,
+} from "framer-motion";
 
 import "./_navbar.scss";
 import ThemeToggleButton from "../theme/themeToggleButton";
 
 const navVariants = {
+  open: {
+    transition: { staggerChildren: 0.07, delayChildren: 0.2 },
+  },
+  closed: {
+    transition: { staggerChildren: 0.05, staggerDirection: -1 },
+  },
   hidden: {
     opacity: 0,
     scale: 0,
@@ -38,7 +49,7 @@ const liVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 0,
-    x: -1000,
+    x: -500,
   },
   visible: {
     opacity: 1,
@@ -50,8 +61,22 @@ const liVariants: Variants = {
 export default function Navbar() {
   const { setProfile } = useContext(UserContext);
   const [navActive, setNavActive] = useState(false);
-  const navigate = useRouter();
+  const [isScrolled, setIsScrolled] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+      setIsScrolled(position > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const navigate = useRouter();
   const {
     data: profileData,
     isPending: isValidationPending,
@@ -104,7 +129,7 @@ export default function Navbar() {
       animate={{
         height: navActive ? "100vh" : "",
       }}
-      className="p-5"
+      className={`p-5 w-fit ${navActive && "nav-gradient"}`}
     >
       <div className="flex justify-between items-center">
         <button

@@ -24,7 +24,7 @@ export default function ThemeToggleButton() {
   }
 
   return (
-    <motion.div className="theme-button-container">
+    <motion.div>
       <motion.button
         type="button"
         onClick={handleThemeChange}

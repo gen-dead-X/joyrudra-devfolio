@@ -17,6 +17,11 @@
   }
 }
 
+.nav-gradient {
+  background: linear-gradient(135deg, #a8a8a8 10%, #ffffff 50%);
+  width: 100% !important;
+}
+
 body.dark {
   .navlink {
     &:hover {
@@ -28,5 +33,10 @@ body.dark {
       background-color: rgb(255, 255, 255);
       color: rgb(0, 94, 255);
     }
+  }
+
+  .nav-gradient {
+    background: linear-gradient(135deg, #000000, #272727);
+    width: 100% !important;
   }
 }
