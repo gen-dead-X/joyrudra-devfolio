@@ -1,10 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { TOKEN } from "@/shared/enums/global";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 
 export default function Home() {
   const router = useRouter();
@@ -18,7 +18,13 @@ export default function Home() {
   return (
     <header className="hero h-screen">
       <motion.img
-        className="h-[20rem] w-[20rem] cursor-grab absolute"
+        className="h-[20rem] w-[20rem] cursor-grab active:cursor-grabbing absolute"
+        transition={{
+          bounce: 100,
+          ease: "easeInOut",
+          damping: 20,
+          stiffness: 200,
+        }}
         drag
         draggable
         dragConstraints={{
