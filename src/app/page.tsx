@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 import { TOKEN } from "@/shared/enums/global";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const router = useRouter();
@@ -14,5 +15,28 @@ export default function Home() {
     }
   }, []);
 
-  return <div className="h-[200vh]">Home</div>;
+  return (
+    <header className="hero h-screen">
+      <motion.img
+        className="h-[20rem] w-[20rem] cursor-grab absolute"
+        drag
+        draggable
+        dragConstraints={{
+          left: 0,
+          top: 0,
+          right: window.innerWidth - 300,
+          bottom: window.innerHeight - 400,
+        }}
+        src="./blobs/shape_blob.png"
+        alt="blob"
+      />
+
+      <div className="flex flex-col justify-center items-center gap-10">
+        <p className="text-2xl uppercase lg:text-4xl font-bold">Welcome To</p>
+        <h1 className="text-8xl uppercase lg:text-[12rem] xl:text-[16rem] font-bold">
+          Paradise
+        </h1>
+      </div>
+    </header>
+  );
 }

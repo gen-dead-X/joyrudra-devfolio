@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,10 +13,24 @@
 body.dark {
   background-color: rgb(25, 25, 25);
   color: white;
+  background: linear-gradient(135deg, #000000, #272727);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  header {
+    h1 {
+      font-family: "Josefin Sans", sans-serif;
+      background: -webkit-linear-gradient(#dedede 1%, #000000 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
 }
 
 body {
-  background-color: white;
+  background: linear-gradient(135deg, #a8a8a8 10%, #ffffff 50%);
+  background-repeat: no-repeat;
+  background-size: cover;
   color: black;
   transition: all 0.3s;
 }
@@ -41,5 +57,14 @@ html {
         }
       }
     }
+  }
+}
+
+header {
+  h1 {
+    font-family: "Josefin Sans", sans-serif;
+    background: -webkit-linear-gradient(#7f7f7f, #000000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
