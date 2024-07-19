@@ -1,13 +1,55 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import { UserContext } from "@/app/context/user.content";
 import urls from "@/shared/enums/urls";
 import type { Profile } from "@/shared/types/user.type";
 import { useRouter } from "next/navigation";
+import { Skeleton } from "antd";
+
+/* Icons */
+import { HiMiniBars2 } from "react-icons/hi2";
+import { RxCross2 } from "react-icons/rx";
+import { motion, type Variants } from "framer-motion";
+import Link from "next/link";
+
+import "./_navbar.scss";
+import ThemeToggleButton from "../theme/themeToggleButton";
+
+const navVariants = {
+  hidden: {
+    opacity: 0,
+    scale: 0,
+    display: "none",
+    height: "0",
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    display: "flex",
+    height: "100%",
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const liVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 0,
+    x: -1000,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    x: 0,
+  },
+};
 
 export default function Navbar() {
-  const { profile, setProfile } = useContext(UserContext);
+  const { setProfile } = useContext(UserContext);
+  const [navActive, setNavActive] = useState(false);
   const navigate = useRouter();
 
   const {
@@ -30,12 +72,73 @@ export default function Navbar() {
   }, [profileData]);
 
   if (!profileData) {
-    return <>Loading Profile</>;
+    return (
+      <Skeleton.Button
+        active={true}
+        size={"default"}
+        shape={"default"}
+        block={true}
+        style={{
+          height: "5rem",
+        }}
+      />
+    );
   }
 
   if (isValidationPending) {
-    return <div>Loading</div>;
+    return (
+      <Skeleton.Button
+        active={true}
+        size={"default"}
+        shape={"default"}
+        block={true}
+        style={{
+          height: "5rem",
+        }}
+      />
+    );
   }
 
-  return <div>Navbar</div>;
+  return (
+    <motion.nav
+      animate={{
+        height: navActive ? "100vh" : "",
+      }}
+      className="p-5"
+    >
+      <div className="flex justify-between items-center">
+        <button
+          type="button"
+          className="transition-all duration-300"
+          onClick={() => setNavActive(!navActive)}
+        >
+          {navActive ? (
+            <RxCross2 className="text-6xl" />
+          ) : (
+            <HiMiniBars2 className="text-6xl" />
+          )}
+        </button>
+      </div>
+
+      <motion.ul
+        initial="hidden"
+        animate={navActive ? "visible" : "hidden"}
+        variants={navVariants}
+        className="h-full flex w-full flex-col items-start justify-center text-4xl gap-5"
+      >
+        <motion.li variants={liVariants} className="pl-5">
+          <ThemeToggleButton />
+        </motion.li>
+        <motion.li variants={liVariants} className="navlink">
+          <Link href={"/"}>Home</Link>
+        </motion.li>
+        <motion.li variants={liVariants} className="navlink">
+          <Link href={"/"}>Explore</Link>
+        </motion.li>
+        <motion.li variants={liVariants} className="navlink">
+          <Link href={"/"}>Contacts</Link>
+        </motion.li>
+      </motion.ul>
+    </motion.nav>
+  );
 }

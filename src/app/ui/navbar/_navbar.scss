@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Playwrite+HR:wght@100..400&display=swap");
+
+.navlink {
+  transition: all 0.3s;
+  padding: 1.2rem;
+  border-top-right-radius: 5rem;
+  border-bottom-right-radius: 5rem;
+
+  &:hover {
+    // font-family: "Playwrite HR", cursive;
+    font-family: "Permanent Marker", cursive;
+    scale: 1.5;
+    padding-left: 4rem;
+    padding-right: 5rem;
+    background-color: rgb(23, 23, 23);
+    color: rgb(44, 121, 255);
+  }
+}
+
+body.dark {
+  .navlink {
+    &:hover {
+      // font-family: "Playwrite HR", cursive;
+      font-family: "Permanent Marker", cursive;
+      scale: 1.5;
+      padding-left: 4rem;
+      padding-right: 5rem;
+      background-color: rgb(255, 255, 255);
+      color: rgb(0, 94, 255);
+    }
+  }
+}

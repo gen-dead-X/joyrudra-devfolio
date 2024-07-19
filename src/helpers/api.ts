@@ -30,6 +30,10 @@ instance.interceptors.response.use(
       }
       // status code 401 is unauthorized
       if (error.response?.status === 401) {
+        if (!localStorage.getItem("refresh_token")) {
+          return;
+        }
+
         try {
           const response = await axios.get(
             `${config.BASE_URL}/auth/refresh-token`,
@@ -56,7 +60,7 @@ instance.interceptors.response.use(
           return instance(originalRequest);
         } catch (error) {
           localStorage.clear();
-          window.location.replace("/");
+          window.location.replace("/sign-in");
           return;
         }
       }
