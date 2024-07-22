@@ -1,10 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { TOKEN } from "@/shared/enums/global";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import GoldenYellowBlob from "./ui/blobs/golden.yellow.blob";
 
 export default function Home() {
   const router = useRouter();
@@ -17,19 +17,8 @@ export default function Home() {
 
   return (
     <header className="hero h-screen">
-      <motion.img
-        className="h-[20rem] w-[20rem] cursor-grab active:cursor-grabbing absolute"
-        drag
-        draggable
-        dragConstraints={{
-          left: 0,
-          top: 0,
-          right: window.innerWidth - 300,
-          bottom: window.innerHeight - 400,
-        }}
-        src="./blobs/shape_blob.png"
-        alt="blob"
-      />
+      {/* Blob */}
+      <GoldenYellowBlob />
 
       <div className="flex flex-col justify-center items-center gap-10 header-text">
         <p className="text-2xl uppercase lg:text-4xl font-bold">Welcome To</p>
