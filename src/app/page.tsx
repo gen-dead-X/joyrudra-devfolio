@@ -19,12 +19,6 @@ export default function Home() {
     <header className="hero h-screen">
       <motion.img
         className="h-[20rem] w-[20rem] cursor-grab active:cursor-grabbing absolute"
-        transition={{
-          bounce: 100,
-          ease: "easeInOut",
-          damping: 20,
-          stiffness: 200,
-        }}
         drag
         draggable
         dragConstraints={{
@@ -37,7 +31,7 @@ export default function Home() {
         alt="blob"
       />
 
-      <div className="flex flex-col justify-center items-center gap-10">
+      <div className="flex flex-col justify-center items-center gap-10 header-text">
         <p className="text-2xl uppercase lg:text-4xl font-bold">Welcome To</p>
         <h1 className="text-8xl uppercase lg:text-[12rem] xl:text-[16rem] font-bold">
           Paradise

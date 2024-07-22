@@ -10,6 +10,24 @@
   --background-end-rgb: 0, 0, 0;
 }
 
+body {
+  background: linear-gradient(135deg, #a8a8a8 10%, #ffffff 50%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: black;
+  transition: all 0.3s;
+
+  header {
+    h1 {
+      font-family: "Josefin Sans", sans-serif;
+      background: -webkit-linear-gradient(#7f7f7f, #000000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.222);
+    }
+  }
+}
+
 body.dark {
   background-color: rgb(25, 25, 25);
   color: white;
@@ -23,16 +41,9 @@ body.dark {
       background: -webkit-linear-gradient(#dedede 1%, #000000 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-shadow: 0px 10px 15px rgba(0, 0, 0, 0.33);
     }
   }
-}
-
-body {
-  background: linear-gradient(135deg, #a8a8a8 10%, #ffffff 50%);
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: black;
-  transition: all 0.3s;
 }
 
 /* Snackbar Stylings */
@@ -48,7 +59,6 @@ html {
         @media screen and (min-width: 600px) {
           .notistack-MuiContent {
             font-size: 1.2rem !important;
-            // justify-content: start;
           }
         }
 
@@ -57,14 +67,5 @@ html {
         }
       }
     }
-  }
-}
-
-header {
-  h1 {
-    font-family: "Josefin Sans", sans-serif;
-    background: -webkit-linear-gradient(#7f7f7f, #000000);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 }

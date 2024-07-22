@@ -132,11 +132,7 @@ export default function Navbar() {
       className={`p-5 w-fit ${navActive && "nav-gradient"}`}
     >
       <div className="flex justify-between items-center">
-        <button
-          type="button"
-          className="transition-all duration-300"
-          onClick={() => setNavActive(!navActive)}
-        >
+        <button type="button" onClick={() => setNavActive(!navActive)}>
           {navActive ? (
             <RxCross2 className="text-6xl" />
           ) : (
