@@ -20,6 +20,7 @@ import {
 
 import "./_navbar.scss";
 import ThemeToggleButton from "../theme/themeToggleButton";
+import useAuth from "@/app/hooks/useAuth";
 
 const navVariants = {
   open: {
@@ -62,6 +63,7 @@ export default function Navbar() {
   const { setProfile } = useContext(UserContext);
   const [navActive, setNavActive] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,17 +99,7 @@ export default function Navbar() {
   }, [profileData]);
 
   if (!profileData) {
-    return (
-      <Skeleton.Button
-        active={true}
-        size={"default"}
-        shape={"default"}
-        block={true}
-        style={{
-          height: "5rem",
-        }}
-      />
-    );
+    return <></>;
   }
 
   if (isValidationPending) {
@@ -129,7 +121,9 @@ export default function Navbar() {
       animate={{
         height: navActive ? "100vh" : "",
       }}
-      className={`p-5 w-fit ${navActive && "nav-gradient"}`}
+      className={`fixed top-0 w-full p-5 z-10 ${
+        (isScrolled || navActive) && "nav-gradient"
+      }`}
     >
       <div className="flex justify-between items-center">
         <button type="button" onClick={() => setNavActive(!navActive)}>
@@ -158,6 +152,14 @@ export default function Navbar() {
         </motion.li>
         <motion.li variants={liVariants} className="navlink">
           <Link href={"/"}>Contacts</Link>
+        </motion.li>
+        <motion.li
+          variants={liVariants}
+          className="text-xl pl-[1.5rem] hover:text-red-500"
+        >
+          <button onClick={logout} type="button">
+            Logout
+          </button>
         </motion.li>
       </motion.ul>
     </motion.nav>

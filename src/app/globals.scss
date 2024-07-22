@@ -11,7 +11,7 @@
 }
 
 body {
-  background: linear-gradient(135deg, #a8a8a8 10%, #ffffff 50%);
+  background: linear-gradient(135deg, #f3f3f3 1%, #ffffff 25%);
   background-repeat: no-repeat;
   background-size: cover;
   color: black;
@@ -25,6 +25,17 @@ body {
       -webkit-text-fill-color: transparent;
       text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.222);
     }
+  }
+
+  .scroll-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh; /* Ensure the container takes the full viewport height */
+  }
+
+  .scroll-item {
+    scroll-snap-align: start;
+    height: 100vh; /* Ensure each item takes the full viewport height */
   }
 }
 
@@ -67,5 +78,37 @@ html {
         }
       }
     }
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 2px solid rgb(12, 72, 145);
+  -webkit-text-fill-color: rgb(0, 0, 0);
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+body.dark {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border: 2px solid rgb(9, 101, 214);
+    -webkit-text-fill-color: rgb(255, 255, 255);
+    -webkit-box-shadow: 0 0 0px 1000px #000000 inset;
+    transition: background-color 5000s ease-in-out 0s;
   }
 }

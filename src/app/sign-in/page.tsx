@@ -160,7 +160,7 @@ export default function SignIn() {
                 height={25}
                 width={25}
               />
-              <p>Continue With Google</p>
+              <p className="dark:text-black">Continue With Google</p>
             </button>
           </div>
 

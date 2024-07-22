@@ -16,7 +16,7 @@ export default function Home() {
   }, []);
 
   return (
-    <header className="hero h-screen">
+    <header className="hero h-[300vh] mt-28">
       {/* Blob */}
       <GoldenYellowBlob />
 

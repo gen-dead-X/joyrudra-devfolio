@@ -17,7 +17,7 @@
 }
 
 .nav-gradient {
-  background: linear-gradient(135deg, #a8a8a8 10%, #ffffff 50%);
+  background: linear-gradient(135deg, #ffffff 10%, #f0f0f0 70%);
   width: 100% !important;
 }
 
@@ -33,7 +33,7 @@ body.dark {
   }
 
   .nav-gradient {
-    background: linear-gradient(135deg, #000000, #272727);
+    background: linear-gradient(135deg, #101010, #1a1a1a);
     width: 100% !important;
   }
 }

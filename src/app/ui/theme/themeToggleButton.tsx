@@ -33,9 +33,9 @@ export default function ThemeToggleButton() {
         className="text-4xl"
       >
         {!darkMode ? (
-          <LuSunMedium className="h-full w-full p-1 " />
+          <LuSunMedium className="h-full w-full p-1 hover:text-amber-500" />
         ) : (
-          <BsFillCloudMoonFill className="h-full w-full p-1" />
+          <BsFillCloudMoonFill className="h-full w-full p-1 hover:text-slate-500" />
         )}
       </motion.button>
     </motion.div>
