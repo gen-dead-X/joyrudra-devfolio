@@ -18,6 +18,9 @@ body {
   transition: all 0.3s;
 
   header {
+    background-image: url("../../public/blobs/greenish_blob.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     h1 {
       font-family: "Josefin Sans", sans-serif;
       background: -webkit-linear-gradient(#7f7f7f, #000000);
@@ -40,13 +43,18 @@ body {
 }
 
 body.dark {
-  background-color: rgb(25, 25, 25);
   color: white;
   background: linear-gradient(135deg, #000000, #272727);
   background-repeat: no-repeat;
   background-size: cover;
 
   header {
+    // background: #f3f3f3;
+    background-image: url("../../public/blobs/greenish_blob.png");
+    // background-image: url("https://images.pexels.com/photos/26775381/pexels-photo-26775381/free-photo-of-black-and-white-photograph-of-sand-dunes-in-the-desert.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
     h1 {
       font-family: "Josefin Sans", sans-serif;
       background: -webkit-linear-gradient(#dedede 1%, #000000 100%);

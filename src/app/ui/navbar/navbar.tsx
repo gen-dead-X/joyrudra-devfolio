@@ -93,7 +93,6 @@ export default function Navbar() {
     }
 
     if (error) {
-      console.log("error");
       navigate.push("/sign-in");
     }
   }, [profileData]);

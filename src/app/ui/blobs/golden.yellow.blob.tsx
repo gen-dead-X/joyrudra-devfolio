@@ -4,7 +4,7 @@ import React from "react";
 export default function GoldenYellowBlob() {
   return (
     <motion.img
-      className="h-[20rem] w-[20rem] cursor-grab active:cursor-grabbing absolute"
+      className="h-[20rem] w-[20rem] cursor-grab active:cursor-grabbing absolute z-[11]"
       drag
       dragConstraints={{
         left: 0,
@@ -12,6 +12,7 @@ export default function GoldenYellowBlob() {
         right: window.innerWidth - 300,
         bottom: window.innerHeight - 400,
       }}
+      draggable
       dragElastic={1}
       dragTransition={{ bounceStiffness: 500, bounceDamping: 10 }}
       whileDrag={{
