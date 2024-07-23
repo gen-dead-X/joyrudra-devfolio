@@ -7,6 +7,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/helpers/api";
 import { SnackbarProvider } from "notistack";
 import Navbar from "./ui/navbar/navbar";
+import GoldenYellowBlob from "./ui/blobs/golden.yellow.blob";
 
 const inter = Poppins({
   weight: "400",
@@ -30,6 +31,7 @@ export default function RootLayout({
               className="text-2xl p-5"
             >
               <Navbar />
+              <GoldenYellowBlob />
               {children}
             </SnackbarProvider>
           </QueryClientProvider>

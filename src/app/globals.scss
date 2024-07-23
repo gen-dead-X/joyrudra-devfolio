@@ -68,11 +68,15 @@ body.dark {
 
     h1 {
       font-family: "Josefin Sans", sans-serif;
-      background: -webkit-linear-gradient(#ffffff, #006208);
+      background: -webkit-linear-gradient(#ffffff, #585858);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0px 10px 20px rgba(0, 0, 0, 0.33);
     }
+  }
+
+  main {
+    overflow-x: hidden;
   }
 }
 

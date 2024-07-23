@@ -1,8 +1,8 @@
 import { motion, useInView, type Variants } from "framer-motion";
 import React, { useRef } from "react";
 
-import "./_explore.module.scss";
-import { antonio, roboto_slab } from "@/app/fonts/fonts";
+import "./explore.scss";
+import { roboto_slab } from "@/app/fonts/fonts";
 import StaggeringTextAnimation from "../../global/animated.text/staggering.text.animation";
 
 const popInVariants = {
@@ -50,10 +50,15 @@ export default function Explore() {
   return (
     <div
       ref={containerRef}
-      id="#explore"
-      className="snap-section pt-28 p-5 flex flex-col gap-10 items-center relative z-10"
+      id="explore"
+      className="snap-section pt-28 p-5 flex flex-col gap-10 items-center relative z-0"
     >
-      <div className={`flex flex-col w-full gap-20 ${antonio.className}`}>
+      <div className="explore-bg absolute h-full w-full z-[2] top-0 left-0" />
+      <div
+        className={
+          "flex flex-col items-center w-full gap-10 relative z-[10] h-full"
+        }
+      >
         <motion.p
           initial={"hidden"}
           animate={isContainerView ? "visible" : "hidden"}

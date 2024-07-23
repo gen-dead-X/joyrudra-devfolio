@@ -1,11 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { animate, motion, spring } from "framer-motion";
-
-import { TOKEN } from "@/shared/enums/global";
-import GoldenYellowBlob from "../../blobs/golden.yellow.blob";
+import { motion } from "framer-motion";
 
 const popInVariants = {
   hidden: {
@@ -40,10 +35,7 @@ export default function Header() {
   const headerText = "Paradise";
 
   return (
-    <header className="snap-section hero flex flex-col gap-10 h-[100vh] relative z-[2] overflow-visible justify-center">
-      {/* Blob */}
-      <GoldenYellowBlob />
-
+    <header className="snap-section hero flex flex-col gap-10 h-[100vh] relative z-[2] overflow-y-visible justify-center">
       <div className="flex flex-col justify-center items-center gap-10 header-text relative z-10">
         <motion.p
           initial={{ opacity: 0, y: 50, scale: 0.5 }}
@@ -72,7 +64,7 @@ export default function Header() {
 
       <motion.img
         src="./blobs/greenish_blob.png"
-        className="md:absolute top-0 left-0 w-full aspect-square"
+        className="md:absolute z-[4] top-0 left-0 w-full aspect-square"
         alt="green_blob"
         animate={{ rotate: [0, 360] }}
         transition={{
