@@ -1,0 +1,11 @@
+body {
+  #explore {
+    background: linear-gradient(135deg, #f3f3f3 1%, #ffffff 25%);
+  }
+}
+
+body.dark {
+  #explore {
+    background: linear-gradient(135deg, #6b6b6b 1%, #232323 25%);
+  }
+}

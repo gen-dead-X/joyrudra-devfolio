@@ -17,6 +17,17 @@ body {
   color: black;
   transition: all 0.3s;
 
+  .snap-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh; /* Ensure the container takes full height */
+  }
+
+  .snap-section {
+    scroll-snap-align: start;
+    height: 100vh; /* Each section takes full height */
+  }
+
   header {
     background-image: url("../../public/blobs/greenish_blob.png");
     background-repeat: no-repeat;
@@ -57,7 +68,7 @@ body.dark {
 
     h1 {
       font-family: "Josefin Sans", sans-serif;
-      background: -webkit-linear-gradient(#ffffff, #b9b9b9);
+      background: -webkit-linear-gradient(#ffffff, #006208);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0px 10px 20px rgba(0, 0, 0, 0.33);
