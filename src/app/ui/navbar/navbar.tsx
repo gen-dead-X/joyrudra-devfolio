@@ -135,7 +135,6 @@ export default function Navbar() {
       </div>
 
       <motion.ul
-        initial="hidden"
         animate={navActive ? "visible" : "hidden"}
         variants={navVariants}
         className="h-full flex w-full flex-col items-start justify-center text-4xl gap-5"

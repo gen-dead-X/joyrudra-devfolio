@@ -7,8 +7,37 @@ import { motion } from "framer-motion";
 import { TOKEN } from "@/shared/enums/global";
 import GoldenYellowBlob from "./ui/blobs/golden.yellow.blob";
 
+const popInVariants = {
+  hidden: {
+    opacity: 0,
+    scale: 0,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 500,
+      damping: 30,
+    },
+  },
+};
+
+const containerVariants = {
+  hidden: {
+    opacity: 1,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
 export default function Home() {
   const router = useRouter();
+  const headerText = "Paradise";
 
   useEffect(() => {
     if (!localStorage.getItem(TOKEN.ACCESS_TOKEN)) {
@@ -23,9 +52,19 @@ export default function Home() {
 
       <div className="flex flex-col justify-center items-center gap-10 header-text relative z-10">
         <p className="text-2xl uppercase lg:text-4xl font-bold">Welcome To</p>
-        <h1 className="text-8xl uppercase lg:text-[12rem] xl:text-[16rem] font-bold">
-          Paradise
-        </h1>
+
+        <motion.h1
+          className="text-8xl uppercase lg:text-[12rem] xl:text-[16rem] font-bold"
+          variants={containerVariants}
+        >
+          {headerText.split("").map((letter) => {
+            return (
+              <motion.span key={crypto.randomUUID()} variants={popInVariants}>
+                {letter}
+              </motion.span>
+            );
+          })}
+        </motion.h1>
       </div>
 
       <motion.img
