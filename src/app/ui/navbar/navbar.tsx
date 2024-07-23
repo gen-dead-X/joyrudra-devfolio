@@ -146,7 +146,7 @@ export default function Navbar() {
           <Link href={"/"}>Home</Link>
         </motion.li>
         <motion.li variants={liVariants} className="navlink">
-          <Link href={"/"}>Explore</Link>
+          <Link href={"#explore"}>Explore</Link>
         </motion.li>
         <motion.li variants={liVariants} className="navlink">
           <Link href={"/"}>Contacts</Link>
