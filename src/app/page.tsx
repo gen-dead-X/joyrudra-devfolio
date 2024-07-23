@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { animate, motion, spring } from "framer-motion";
 
 import { TOKEN } from "@/shared/enums/global";
 import GoldenYellowBlob from "./ui/blobs/golden.yellow.blob";
@@ -17,8 +17,9 @@ const popInVariants = {
     scale: 1,
     transition: {
       type: "spring",
-      stiffness: 500,
-      damping: 30,
+      stiffness: 300,
+      damping: 20,
+      duration: 0.5,
     },
   },
 };
@@ -30,7 +31,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.5,
     },
   },
 };
@@ -51,15 +52,24 @@ export default function Home() {
       <GoldenYellowBlob />
 
       <div className="flex flex-col justify-center items-center gap-10 header-text relative z-10">
-        <p className="text-2xl uppercase lg:text-4xl font-bold">Welcome To</p>
+        <motion.p
+          initial={{ opacity: 0, y: 50, scale: 0.5 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1, type: "spring" }}
+          className="text-2xl uppercase lg:text-4xl font-bold"
+        >
+          Welcome To
+        </motion.p>
 
         <motion.h1
-          className="text-8xl uppercase lg:text-[12rem] xl:text-[16rem] font-bold"
-          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          transition={{ staggerChildren: 0.1, delayChildren: 1 }}
+          className="text-8xl uppercase lg:text-[12rem] xl:text-[16rem] font-bold opacity-70"
         >
           {headerText.split("").map((letter) => {
             return (
-              <motion.span key={crypto.randomUUID()} variants={popInVariants}>
+              <motion.span variants={popInVariants} key={crypto.randomUUID()}>
                 {letter}
               </motion.span>
             );
