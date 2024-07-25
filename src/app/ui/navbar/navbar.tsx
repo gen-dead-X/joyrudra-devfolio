@@ -1,26 +1,26 @@
-import React, { useContext, useEffect, useState } from "react";
-import Link from "next/link";
-import { useQuery } from "@tanstack/react-query";
+import React, { useContext, useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useQuery } from '@tanstack/react-query';
 
-import { UserContext } from "@/app/context/user.content";
-import urls from "@/shared/enums/urls";
-import type { Profile } from "@/shared/types/user.type";
-import { useRouter } from "next/navigation";
-import { Skeleton } from "antd";
+import { UserContext } from '@/app/context/user.content';
+import urls from '@/shared/enums/urls';
+import type { Profile } from '@/shared/types/user.type';
+import { useRouter } from 'next/navigation';
+import { Skeleton } from 'antd';
 
 /* Icons */
-import { HiMiniBars2 } from "react-icons/hi2";
-import { RxCross2 } from "react-icons/rx";
+import { HiMiniBars2 } from 'react-icons/hi2';
+import { RxCross2 } from 'react-icons/rx';
 import {
   motion,
   useMotionValue,
   useTransform,
   type Variants,
-} from "framer-motion";
+} from 'framer-motion';
 
-import "./_navbar.scss";
-import ThemeToggleButton from "../theme/themeToggleButton";
-import useAuth from "@/app/hooks/useAuth";
+import './_navbar.scss';
+import ThemeToggleButton from '../theme/themeToggleButton';
+import useAuth from '@/app/hooks/useAuth';
 
 const navVariants = {
   open: {
@@ -32,14 +32,14 @@ const navVariants = {
   hidden: {
     opacity: 0,
     scale: 0,
-    display: "none",
-    height: "0",
+    display: 'none',
+    height: '0',
   },
   visible: {
     opacity: 1,
     scale: 1,
-    display: "flex",
-    height: "100%",
+    display: 'flex',
+    height: '100%',
     transition: {
       staggerChildren: 0.1,
     },
@@ -71,10 +71,10 @@ export default function Navbar() {
       setIsScrolled(position > 0);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -93,7 +93,7 @@ export default function Navbar() {
     }
 
     if (error) {
-      navigate.push("/sign-in");
+      navigate.push('/sign-in');
     }
   }, [profileData]);
 
@@ -105,11 +105,11 @@ export default function Navbar() {
     return (
       <Skeleton.Button
         active={true}
-        size={"default"}
-        shape={"default"}
+        size={'default'}
+        shape={'default'}
         block={true}
         style={{
-          height: "5rem",
+          height: '5rem',
         }}
       />
     );
@@ -118,13 +118,13 @@ export default function Navbar() {
   return (
     <motion.nav
       animate={{
-        height: navActive ? "100vh" : "",
+        height: navActive ? '100vh' : '',
       }}
-      className={`fixed top-0 w-full p-5 z-10 ${
-        (isScrolled || navActive) && "nav-gradient"
+      className={`fixed top-0 z-10 w-full p-5 ${
+        (isScrolled || navActive) && 'nav-gradient'
       }`}
     >
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <button type="button" onClick={() => setNavActive(!navActive)}>
           {navActive ? (
             <RxCross2 className="text-6xl" />
@@ -135,25 +135,25 @@ export default function Navbar() {
       </div>
 
       <motion.ul
-        animate={navActive ? "visible" : "hidden"}
+        animate={navActive ? 'visible' : 'hidden'}
         variants={navVariants}
-        className="h-full flex w-full flex-col items-start justify-center text-4xl gap-5"
+        className="flex h-full w-full flex-col items-start justify-center gap-5 text-4xl"
       >
         <motion.li variants={liVariants} className="pl-5">
           <ThemeToggleButton />
         </motion.li>
         <motion.li variants={liVariants} className="navlink">
-          <Link href={"/"}>Home</Link>
+          <Link href={'/'}>Home</Link>
         </motion.li>
         <motion.li variants={liVariants} className="navlink">
-          <Link href={"#explore"}>Explore</Link>
+          <Link href={'#explore'}>Explore</Link>
         </motion.li>
         <motion.li variants={liVariants} className="navlink">
-          <Link href={"/"}>Contacts</Link>
+          <Link href={'/'}>Contacts</Link>
         </motion.li>
         <motion.li
           variants={liVariants}
-          className="text-xl pl-[1.5rem] hover:text-red-500"
+          className="pl-[1.5rem] text-xl hover:text-red-500"
         >
           <button onClick={logout} type="button">
             Logout

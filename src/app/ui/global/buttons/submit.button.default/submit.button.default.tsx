@@ -1,5 +1,5 @@
-import type { HTMLAttributes } from "react";
-import "./_submit.button.scoped.scss";
+import type { HTMLAttributes } from 'react';
+import './_submit.button.scoped.scss';
 
 export default function SubmitButtonDefault({
   ...divProps

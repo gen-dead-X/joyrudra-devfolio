@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { type InputHTMLAttributes, useId, useState } from "react";
-import { useController, useFormContext } from "react-hook-form";
-import { IoEyeOutline } from "react-icons/io5";
+import { type InputHTMLAttributes, useId, useState } from 'react';
+import { useController, useFormContext } from 'react-hook-form';
+import { IoEyeOutline } from 'react-icons/io5';
 
-import "./_animated.inputLabel.scoped.scss";
+import './_animated.inputLabel.scoped.scss';
 
 type FormInputProps = InputHTMLAttributes<HTMLInputElement> & {
   showPasswordButton?: boolean;
@@ -27,28 +27,28 @@ export default function AnimatedInput({
 
   return (
     <div className="relative w-full">
-      <div className="input-container ">
+      <div className="input-container">
         <button
           onClick={() => setShowPassword(!showPassword)}
           type="button"
           className={`${
-            showPasswordButton ? " block " : " hidden "
+            showPasswordButton ? 'block' : 'hidden'
           }absolute right-5 top-[50%] z-50 translate-y-[-50%]`}
         >
-          <IoEyeOutline className={" "} />
+          <IoEyeOutline className={' '} />
         </button>
         <input
           {...inputProps}
           className={
             inputProps.className +
-            (fieldState.error?.message ? " border-red-500 " : "")
+            (fieldState.error?.message ? ' border-red-500' : '')
           }
           {...register(inputProps.name)}
           name={inputProps.name}
           type={
             (showPasswordButton && showPassword
-              ? "text"
-              : !inputProps.type && " password") || inputProps.type
+              ? 'text'
+              : !inputProps.type && ' password') || inputProps.type
           }
           placeholder=""
           autoComplete="on"
@@ -56,7 +56,7 @@ export default function AnimatedInput({
         />
         <label
           htmlFor={id}
-          className="bg-[#ffffff] text-black dark:bg-[#020617]  dark:text-white"
+          className="bg-[#ffffff] text-black dark:bg-[#020617] dark:text-white"
         >
           {label}
         </label>

@@ -3,7 +3,7 @@ import {
   type SnackbarKey,
   type VariantType,
   type SnackbarOrigin,
-} from "notistack";
+} from 'notistack';
 
 export const ErrorNotistackToast = (
   message: string | React.ReactNode,
@@ -11,10 +11,10 @@ export const ErrorNotistackToast = (
     variant?: VariantType;
     anchorOrigin?: SnackbarOrigin;
   } = {
-    variant: "error",
+    variant: 'error',
     anchorOrigin: {
-      vertical: "bottom",
-      horizontal: "center",
+      vertical: 'bottom',
+      horizontal: 'center',
     },
   }
 ): SnackbarKey => {
@@ -32,10 +32,10 @@ export const SuccessNotistackToast = (
     variant?: VariantType;
     anchorOrigin?: SnackbarOrigin;
   } = {
-    variant: "success",
+    variant: 'success',
     anchorOrigin: {
-      vertical: "bottom",
-      horizontal: "center",
+      vertical: 'bottom',
+      horizontal: 'center',
     },
   }
 ): SnackbarKey => {
@@ -53,10 +53,10 @@ export const InfoNotistackToast = (
     variant?: VariantType;
     anchorOrigin?: SnackbarOrigin;
   } = {
-    variant: "info",
+    variant: 'info',
     anchorOrigin: {
-      vertical: "bottom",
-      horizontal: "center",
+      vertical: 'bottom',
+      horizontal: 'center',
     },
   }
 ): SnackbarKey => {
@@ -74,10 +74,10 @@ export const WarningNotistackToast = (
     variant?: VariantType;
     anchorOrigin?: SnackbarOrigin;
   } = {
-    variant: "warning",
+    variant: 'warning',
     anchorOrigin: {
-      vertical: "bottom",
-      horizontal: "center",
+      vertical: 'bottom',
+      horizontal: 'center',
     },
   }
 ): SnackbarKey => {
@@ -95,10 +95,10 @@ export const GeneralNotistackToast = (
     variant?: VariantType;
     anchorOrigin?: SnackbarOrigin;
   } = {
-    variant: "default",
+    variant: 'default',
     anchorOrigin: {
-      vertical: "bottom",
-      horizontal: "center",
+      vertical: 'bottom',
+      horizontal: 'center',
     },
   }
 ): SnackbarKey => {

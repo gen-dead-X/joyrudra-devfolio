@@ -1,10 +1,10 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React from 'react';
+import { motion } from 'framer-motion';
 
 export default function GoldenYellowBlob() {
   return (
     <motion.img
-      className="h-[20rem] w-[20rem] cursor-grab active:cursor-grabbing absolute z-[11]"
+      className="absolute z-[11] h-[20rem] w-[20rem] cursor-grab active:cursor-grabbing"
       drag
       dragConstraints={{
         left: 0,
@@ -19,7 +19,7 @@ export default function GoldenYellowBlob() {
         scale: 0.8,
       }}
       transition={{
-        type: "spring",
+        type: 'spring',
         stiffness: 200,
         damping: 20,
       }}

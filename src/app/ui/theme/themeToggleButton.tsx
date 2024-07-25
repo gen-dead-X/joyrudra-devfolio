@@ -1,26 +1,26 @@
-import "./_ThemeToggleButton.scss";
-import { useContext } from "react";
-import { LuSunMedium } from "react-icons/lu";
-import { UserContext } from "@/app/context/user.content";
-import { MdDarkMode } from "react-icons/md";
-import { BsFillCloudMoonFill } from "react-icons/bs";
-import { motion } from "framer-motion";
+import './_ThemeToggleButton.scss';
+import { useContext } from 'react';
+import { LuSunMedium } from 'react-icons/lu';
+import { UserContext } from '@/app/context/user.content';
+import { MdDarkMode } from 'react-icons/md';
+import { BsFillCloudMoonFill } from 'react-icons/bs';
+import { motion } from 'framer-motion';
 
 export default function ThemeToggleButton() {
   const { darkMode, setDarkMode } = useContext(UserContext);
 
   function handleThemeChange() {
     if (darkMode) {
-      document.querySelector("body")?.classList.remove("dark");
-      localStorage.setItem("dark", "false");
+      document.querySelector('body')?.classList.remove('dark');
+      localStorage.setItem('dark', 'false');
       setDarkMode(false);
 
       return;
     }
 
-    document.querySelector("body")?.classList.add("dark");
+    document.querySelector('body')?.classList.add('dark');
     setDarkMode(true);
-    localStorage.setItem("dark", "true");
+    localStorage.setItem('dark', 'true');
   }
 
   return (

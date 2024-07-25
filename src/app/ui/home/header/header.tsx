@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 const popInVariants = {
   hidden: {
@@ -11,7 +11,7 @@ const popInVariants = {
     opacity: 1,
     scale: 1,
     transition: {
-      type: "spring",
+      type: 'spring',
       stiffness: 300,
       damping: 20,
       duration: 0.5,
@@ -32,16 +32,16 @@ const containerVariants = {
 };
 
 export default function Header() {
-  const headerText = "Paradise";
+  const headerText = 'Paradise';
 
   return (
-    <header className="snap-section hero flex flex-col gap-10 h-[100vh] relative z-[2] overflow-y-visible justify-center">
-      <div className="flex flex-col justify-center items-center gap-10 header-text relative z-10">
+    <header className="snap-section hero relative z-[2] flex h-[100vh] flex-col justify-center gap-10 overflow-y-visible">
+      <div className="header-text relative z-10 flex flex-col items-center justify-center gap-10">
         <motion.p
           initial={{ opacity: 0, y: 50, scale: 0.5 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1, type: "spring" }}
-          className="text-2xl uppercase lg:text-4xl font-bold"
+          transition={{ duration: 1, type: 'spring' }}
+          className="text-2xl font-bold uppercase lg:text-4xl"
         >
           Welcome To
         </motion.p>
@@ -50,9 +50,9 @@ export default function Header() {
           initial="hidden"
           animate="visible"
           transition={{ staggerChildren: 0.1, delayChildren: 1 }}
-          className="text-8xl uppercase lg:text-[12rem] xl:text-[16rem] font-bold opacity-70"
+          className="text-8xl font-bold uppercase opacity-70 lg:text-[12rem] xl:text-[16rem]"
         >
-          {headerText.split("").map((letter) => {
+          {headerText.split('').map(letter => {
             return (
               <motion.span variants={popInVariants} key={crypto.randomUUID()}>
                 {letter}
@@ -64,13 +64,13 @@ export default function Header() {
 
       <motion.img
         src="./blobs/greenish_blob.png"
-        className="md:absolute z-[4] top-0 left-0 w-full aspect-square"
+        className="left-0 top-0 z-[4] aspect-square w-full md:absolute"
         alt="green_blob"
         animate={{ rotate: [0, 360] }}
         transition={{
           repeat: Infinity,
           duration: 60,
-          ease: "linear",
+          ease: 'linear',
         }}
       />
     </header>

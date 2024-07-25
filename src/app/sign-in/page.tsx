@@ -1,25 +1,25 @@
-"use client";
+'use client';
 
-import { FormProvider, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../context/user.content";
-import type { Profile } from "@/shared/types/user.type";
-import SignInUpLayout from "../ui/auth.layout/auth.layout";
-import { TOKEN } from "@/shared/enums/global";
-import { signInValidationSchema } from "@/validators/user.validators";
-import { usePostMutationQuery } from "../hooks/useMutationQuery";
-import SubmitButtonDefault from "../ui/global/buttons/submit.button.default/submit.button.default";
-import AnimatedInput from "../ui/global/inputs/animated.input/animated.input";
-import config from "@/config";
-import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import Image from "next/image";
-import urls from "@/shared/enums/urls";
-import { useQuery } from "@tanstack/react-query";
-import { phudu } from "../fonts/fonts";
+import { FormProvider, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../context/user.content';
+import type { Profile } from '@/shared/types/user.type';
+import SignInUpLayout from '../ui/auth.layout/auth.layout';
+import { TOKEN } from '@/shared/enums/global';
+import { signInValidationSchema } from '@/validators/user.validators';
+import { usePostMutationQuery } from '../hooks/useMutationQuery';
+import SubmitButtonDefault from '../ui/global/buttons/submit.button.default/submit.button.default';
+import AnimatedInput from '../ui/global/inputs/animated.input/animated.input';
+import config from '@/config';
+import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
+import Image from 'next/image';
+import urls from '@/shared/enums/urls';
+import { useQuery } from '@tanstack/react-query';
+import { phudu } from '../fonts/fonts';
 
-import "./_signin.scoped.scss";
+import './_signin.scoped.scss';
 
 type LogInType = {
   email: string;
@@ -33,7 +33,7 @@ export default function SignIn() {
     resolver: yupResolver(signInValidationSchema),
   });
   const router = useRouter();
-  const [tokens, setTokens] = useState({ access_token: "", refresh_token: "" });
+  const [tokens, setTokens] = useState({ access_token: '', refresh_token: '' });
   const { data: oAuthUrl, isPending: isOAuthPending } = useQuery<string>({
     queryKey: [urls.oAuth],
   });
@@ -46,11 +46,11 @@ export default function SignIn() {
 
   const handleSignIn = (formValue: LogInType) => {
     login(formValue, {
-      onSuccess: (data) => {
+      onSuccess: data => {
         setProfile(data);
         localStorage.setItem(TOKEN.ACCESS_TOKEN, data.access_token);
         localStorage.setItem(TOKEN.REFRESH_TOKEN, data.refresh_token);
-        router.push("/");
+        router.push('/');
       },
     });
   };
@@ -63,7 +63,7 @@ export default function SignIn() {
     const accessToken = searchParams.get(TOKEN.ACCESS_TOKEN) as string;
     const refreshToken = searchParams.get(TOKEN.REFRESH_TOKEN) as string;
 
-    if (window.location.href.includes("access_token") && accessToken) {
+    if (window.location.href.includes('access_token') && accessToken) {
       window.opener.postMessage(
         { accessToken, refreshToken },
         window.location.origin
@@ -76,13 +76,13 @@ export default function SignIn() {
     <SignInUpLayout>
       <FormProvider {...form}>
         <form
-          onSubmit={(e) => form.handleSubmit(handleSignIn)(e)}
-          className="flex relative z-[1] flex-col gap-10 w-full md:w-2/3 xl:w-1/2 2xl:w-1/3 bg-white p-10 rounded-2xl dark:bg-slate-950"
+          onSubmit={e => form.handleSubmit(handleSignIn)(e)}
+          className="relative z-[1] flex w-full flex-col gap-10 rounded-2xl bg-white p-10 dark:bg-slate-950 md:w-2/3 xl:w-1/2 2xl:w-1/3"
         >
           <h1 className="text-center text-xl dark:text-white">
             Welcome to <br />
             <p
-              className={`heading-highlight text-4xl p-2 font-extrabold ${phudu.className}`}
+              className={`heading-highlight p-2 text-4xl font-extrabold ${phudu.className}`}
             >
               NEST JS DEMO
             </p>
@@ -100,9 +100,9 @@ export default function SignIn() {
               className="w-full border-[2px]"
               type="text"
               defaultValue={
-                config.DEV_MODE === "1"
+                config.DEV_MODE === '1'
                   ? config.LOGIN_EMAIL
-                  : form.getValues("email")
+                  : form.getValues('email')
               }
             />
             <AnimatedInput
@@ -112,15 +112,15 @@ export default function SignIn() {
               showPasswordButton
               className="w-full border-[2px]"
               defaultValue={
-                config.DEV_MODE === "1"
+                config.DEV_MODE === '1'
                   ? config.LOGIN_PASSWORD
-                  : form.getValues("password")
+                  : form.getValues('password')
               }
             />
             <button type="submit" className="w-full">
               <SubmitButtonDefault
                 className={`relative rounded-lg ${
-                  logInPending && " submit-animation "
+                  logInPending && 'submit-animation'
                 }`}
               >
                 Sign In
@@ -128,7 +128,7 @@ export default function SignIn() {
             </button>
           </div>
 
-          <div className="pt-1 bg-gray-100 rounded-full" />
+          <div className="rounded-full bg-gray-100 pt-1" />
 
           <div className="flex items-center justify-center">
             <button
@@ -136,7 +136,7 @@ export default function SignIn() {
               onClick={() => {
                 window.open(oAuthUrl);
 
-                window.addEventListener("message", (event) => {
+                window.addEventListener('message', event => {
                   if (event.origin !== window.location.origin) {
                     return;
                   }
@@ -146,17 +146,17 @@ export default function SignIn() {
                     localStorage.setItem(TOKEN.ACCESS_TOKEN, accessToken);
                     localStorage.setItem(TOKEN.REFRESH_TOKEN, refreshToken);
 
-                    router.push("/");
+                    router.push('/');
                   }
 
-                  window.removeEventListener("message", () => {});
+                  window.removeEventListener('message', () => {});
                 });
               }}
-              className="flex items-center gap-3 px-5 p-2 border justify-center transition-all duration-200 w-fit rounded-lg hover:bg-slate-200 dark:bg-white dark:hover:bg-gray-200"
+              className="flex w-fit items-center justify-center gap-3 rounded-lg border p-2 px-5 transition-all duration-200 hover:bg-slate-200 dark:bg-white dark:hover:bg-gray-200"
             >
               <Image
                 alt="google-logo"
-                src={"./logo/google_logo.svg"}
+                src={'./logo/google_logo.svg'}
                 height={25}
                 width={25}
               />
@@ -166,8 +166,8 @@ export default function SignIn() {
 
           <div className="flex items-center justify-center gap-5">
             <Link
-              className="rounded-full bg-black p-2 px-5 text-center text-white hover:bg-gray-500 dark:bg-gray-300 dark:text-black "
-              href={"/sign-up"}
+              className="rounded-full bg-black p-2 px-5 text-center text-white hover:bg-gray-500 dark:bg-gray-300 dark:text-black"
+              href={'/sign-up'}
             >
               Sign up
             </Link>

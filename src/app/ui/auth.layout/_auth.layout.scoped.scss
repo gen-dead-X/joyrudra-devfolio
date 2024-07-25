@@ -1,5 +1,5 @@
 .sign-in-banner {
-  background-image: url("https://images.pexels.com/photos/731891/pexels-photo-731891.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  background-image: url('https://images.pexels.com/photos/731891/pexels-photo-731891.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
   background-repeat: no-repeat;
   background-size: cover;
   filter: blur(2px);
@@ -65,7 +65,7 @@
 
 body.dark {
   .sign-in-banner {
-    background-image: url("https://images.pexels.com/photos/1933316/pexels-photo-1933316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+    background-image: url('https://images.pexels.com/photos/1933316/pexels-photo-1933316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
 
     .sign-in-banner-gradient {
       background: linear-gradient(

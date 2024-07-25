@@ -1,9 +1,9 @@
-import config from "@/config";
-import { TOKEN } from "@/shared/enums/global";
-import axios, { AxiosError, type AxiosRequestConfig } from "axios";
+import config from '@/config';
+import { TOKEN } from '@/shared/enums/global';
+import axios, { AxiosError, type AxiosRequestConfig } from 'axios';
 
 export enum HeaderType {
-  ADMIN = "admin",
+  ADMIN = 'admin',
 }
 
 export const baseURL = config.BASE_URL;
@@ -12,7 +12,7 @@ const instance = axios.create({
   baseURL,
 });
 
-instance.interceptors.request.use((config) => {
+instance.interceptors.request.use(config => {
   config.headers.Authorization = `Bearer ${localStorage.getItem(
     TOKEN.ACCESS_TOKEN
   )}`;
@@ -20,8 +20,8 @@ instance.interceptors.request.use((config) => {
 });
 
 instance.interceptors.response.use(
-  (response) => response,
-  async (error) => {
+  response => response,
+  async error => {
     if (error instanceof AxiosError) {
       const originalRequest = error.config;
 
@@ -30,7 +30,7 @@ instance.interceptors.response.use(
       }
       // status code 401 is unauthorized
       if (error.response?.status === 401) {
-        if (!localStorage.getItem("refresh_token")) {
+        if (!localStorage.getItem('refresh_token')) {
           return;
         }
 
@@ -47,7 +47,7 @@ instance.interceptors.response.use(
           );
 
           if (!response.data.success) {
-            throw new Error("Request Failed!");
+            throw new Error('Request Failed!');
           }
 
           const data = response.data.data;
@@ -60,7 +60,7 @@ instance.interceptors.response.use(
           return instance(originalRequest);
         } catch (error) {
           localStorage.clear();
-          window.location.replace("/sign-in");
+          window.location.replace('/sign-in');
           return;
         }
       }
@@ -96,7 +96,7 @@ import {
   QueryCache,
   QueryClient,
   type QueryKey,
-} from "@tanstack/react-query";
+} from '@tanstack/react-query';
 
 export const defaultGetQueryFn = async ({
   queryKey,
@@ -105,13 +105,13 @@ export const defaultGetQueryFn = async ({
 }) => {
   if (!queryKey) return;
   const url = queryKey[0] as string;
-  const response = await apiCall(url, "GET");
+  const response = await apiCall(url, 'GET');
 
   return response.data;
 };
 
 const queryCache = new QueryCache({
-  onError: (error) => {
+  onError: error => {
     if (error instanceof AxiosError) {
       console.error(error.response?.data.message);
     }
@@ -119,7 +119,7 @@ const queryCache = new QueryCache({
 });
 
 const mutationCache = new MutationCache({
-  onError: (error) => {
+  onError: error => {
     if (error instanceof AxiosError) {
       // ErrorMessageToast(error.response?.data.message);
       console.log(error);
