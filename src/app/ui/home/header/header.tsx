@@ -38,6 +38,10 @@ export default function Header() {
   return (
     <header className="snap-section hero relative z-[2] flex h-[100vh] flex-col justify-center gap-10 overflow-y-visible">
       <BrandingBlob />
+
+      {/* Background */}
+      <div className="explore-bg absolute left-0 h-screen w-screen" />
+
       <div className="header-text relative z-10 flex flex-col items-center justify-center gap-10">
         <motion.p
           initial={{ opacity: 0, y: 50, scale: 0.5 }}
@@ -52,7 +56,7 @@ export default function Header() {
           initial="hidden"
           animate="visible"
           transition={{ staggerChildren: 0.1, delayChildren: 1 }}
-          className="text-8xl font-bold uppercase opacity-70 lg:text-[12rem] xl:text-[16rem]"
+          className="text-8xl font-bold uppercase lg:text-[12rem] xl:text-[16rem]"
         >
           {headerText.split('').map(letter => {
             return (

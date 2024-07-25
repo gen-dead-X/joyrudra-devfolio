@@ -8,6 +8,7 @@ import { queryClient } from '@/helpers/api';
 import { SnackbarProvider } from 'notistack';
 import Navbar from './ui/navbar/navbar';
 import GoldenYellowBlob from './ui/blobs/golden.yellow.blob';
+import Script from 'next/script';
 
 const inter = Poppins({
   weight: '400',
@@ -22,6 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Script src="https://aframe.io/releases/1.6.0/aframe.min.js" />
       <body className={inter.className}>
         <UserContextProvider>
           <QueryClientProvider client={queryClient}>
