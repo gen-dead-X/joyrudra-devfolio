@@ -5,6 +5,7 @@ import './explore.scss';
 import { roboto_slab } from '@/app/fonts/fonts';
 import StaggeringTextAnimation from '../../global/animated.text/staggering.text.animation';
 import CircleCursor from './circle.cursor/circle.cursor';
+import ContactButton from './contact.button/contact.button';
 
 const popInVariants = {
   hidden: {
@@ -105,12 +106,7 @@ export default function Explore() {
             </motion.p>
           </h2>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isContainerView && { opacity: 1 }}
-          >
-            <motion.button type="button">Contact Me</motion.button>
-          </motion.div>
+          <ContactButton isContainerView={isContainerView} />
         </div>
       </div>
     </div>

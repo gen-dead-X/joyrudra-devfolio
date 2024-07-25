@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import BrandingBlob from '../../blobs/branding.blob/branding.blob';
 
 const popInVariants = {
   hidden: {
@@ -36,6 +37,7 @@ export default function Header() {
 
   return (
     <header className="snap-section hero relative z-[2] flex h-[100vh] flex-col justify-center gap-10 overflow-y-visible">
+      <BrandingBlob />
       <div className="header-text relative z-10 flex flex-col items-center justify-center gap-10">
         <motion.p
           initial={{ opacity: 0, y: 50, scale: 0.5 }}
