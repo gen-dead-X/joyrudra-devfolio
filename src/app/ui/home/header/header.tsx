@@ -40,7 +40,7 @@ export default function Header() {
       <BrandingBlob />
 
       {/* Background */}
-      <div className="explore-bg absolute left-0 h-screen w-screen" />
+      <div className="explore-bg absolute h-[300vh] w-[200vw]" />
 
       <div className="header-text relative z-10 flex flex-col items-center justify-center gap-10">
         <motion.p
