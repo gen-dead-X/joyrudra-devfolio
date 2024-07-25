@@ -17,6 +17,10 @@ body {
   color: black;
   transition: all 0.3s;
 
+  .a-enter-vr {
+    display: none;
+  }
+
   .snap-container {
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
