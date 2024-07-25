@@ -1,9 +1,9 @@
-import { motion, useInView, type Variants } from "framer-motion";
-import React, { useRef } from "react";
+import { motion, useInView, type Variants } from 'framer-motion';
+import React, { useRef } from 'react';
 
-import "./explore.scss";
-import { roboto_slab } from "@/app/fonts/fonts";
-import StaggeringTextAnimation from "../../global/animated.text/staggering.text.animation";
+import './explore.scss';
+import { roboto_slab } from '@/app/fonts/fonts';
+import StaggeringTextAnimation from '../../global/animated.text/staggering.text.animation';
 
 const popInVariants = {
   hidden: {
@@ -14,7 +14,7 @@ const popInVariants = {
     opacity: 1,
     x: 0,
     transition: {
-      type: "spring",
+      type: 'spring',
       stiffness: 300,
       damping: 20,
     },
@@ -32,17 +32,17 @@ const myselfVariation: Variants = {
     scale: 1,
     x: 0,
     transition: {
-      type: "ease-in",
+      type: 'ease-in',
       stiffness: 300,
       damping: 20,
     },
-    letterSpacing: "2px",
+    letterSpacing: '2px',
   },
 };
 
 export default function Explore() {
-  const firstName = "Joyrudra";
-  const lastName = "Biswas";
+  const firstName = 'Joyrudra';
+  const lastName = 'Biswas';
   const containerRef = useRef<HTMLDivElement>(null);
 
   const isContainerView = useInView(containerRef, { amount: 0.5, once: true });
@@ -51,33 +51,34 @@ export default function Explore() {
     <div
       ref={containerRef}
       id="explore"
-      className="snap-section pt-28 p-5 flex flex-col gap-10 items-center relative z-0"
+      className="snap-section relative z-0 flex flex-col items-center gap-10 p-5 pt-28"
     >
-      <div className="explore-bg absolute h-full w-full z-[2] top-0 left-0" />
+      <div className="explore-bg absolute left-0 top-0 z-[2] h-full w-full" />
+
       <div
         className={
-          "flex flex-col items-center w-full gap-10 relative z-[10] h-full"
+          'absolute z-[10] flex h-full w-full flex-col items-center gap-10'
         }
       >
         <motion.p
-          initial={"hidden"}
-          animate={isContainerView ? "visible" : "hidden"}
+          initial={'hidden'}
+          animate={isContainerView ? 'visible' : 'hidden'}
           transition={{ staggerChildren: 0.05 }}
           className="text-4xl"
         >
           <StaggeringTextAnimation
-            text={"Myself"}
+            text={'MYSELF'}
             className="inline-block"
             variants={myselfVariation}
           />
         </motion.p>
 
         <h2
-          className={`${roboto_slab.className} flex flex-col items-center gap-5 text-7xl uppercase md:text-[6rem] lg:text-[10rem] xl:text-[12rem] 2xl:text-[16rem] font-bold`}
+          className={`${roboto_slab.className} flex flex-col items-center gap-5 text-7xl font-bold uppercase md:text-[6rem] lg:text-[10rem] xl:text-[12rem] 2xl:text-[16rem]`}
         >
           <motion.p
-            initial={"hidden"}
-            animate={isContainerView ? "visible" : "hidden"}
+            initial={'hidden'}
+            animate={isContainerView ? 'visible' : 'hidden'}
             transition={{ staggerChildren: 0.05 }}
           >
             <StaggeringTextAnimation
@@ -89,7 +90,7 @@ export default function Explore() {
 
           <motion.p
             initial="hidden"
-            animate={isContainerView ? "visible" : "hidden"}
+            animate={isContainerView ? 'visible' : 'hidden'}
             transition={{ staggerChildren: 0.05, delayChildren: 1 }}
           >
             <StaggeringTextAnimation
