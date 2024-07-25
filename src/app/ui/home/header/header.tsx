@@ -63,7 +63,7 @@ export default function Header() {
       </div>
 
       <motion.img
-        src="./blobs/greenish_blob.png"
+        src="./blobs/reddish_blob.png"
         className="left-0 top-0 z-[4] aspect-square w-full md:absolute"
         alt="green_blob"
         animate={{ rotate: [0, 360] }}

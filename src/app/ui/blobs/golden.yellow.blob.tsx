@@ -10,7 +10,7 @@ export default function GoldenYellowBlob() {
         left: 0,
         top: 0,
         right: window.innerWidth - 300,
-        bottom: window.innerHeight - 400,
+        bottom: window.innerHeight - 300,
       }}
       draggable
       dragElastic={1}

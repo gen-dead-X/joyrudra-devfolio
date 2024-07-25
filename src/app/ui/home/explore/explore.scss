@@ -3,6 +3,11 @@ body {
     cursor: none !important;
   }
 
+  .circle-cursor {
+    mix-blend-mode: difference;
+    background-color: black;
+  }
+
   .explore-bg {
     background: linear-gradient(135deg, #f3f3f3 1%, #ffffff 25%);
   }
@@ -11,5 +16,10 @@ body {
 body.dark {
   .explore-bg {
     background: linear-gradient(135deg, #272727, #000000);
+  }
+
+  .circle-cursor {
+    mix-blend-mode: difference;
+    background-color: rgb(255, 255, 255);
   }
 }
