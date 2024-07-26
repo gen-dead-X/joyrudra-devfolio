@@ -8,6 +8,17 @@
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
+
+  --header-gradient-P1: -webkit-linear-gradient(90deg, #0077ff, #00e7df);
+  --header-gradient-P2: -webkit-linear-gradient(90deg, #7f00de, #ff007e);
+  --header-gradient-P3: -webkit-linear-gradient(90deg, #ff1834, #ffc900);
+
+  --header-gradient-P1A: #0077ff;
+  --header-gradient-P1B: #00e7df;
+  --header-gradient-P2A: #7f00de;
+  --header-gradient-P2B: #ff007e;
+  --header-gradient-P3A: #ff1834;
+  --header-gradient-P3B: #ffc900;
 }
 
 body {
@@ -39,10 +50,33 @@ body {
 
     h1 {
       font-family: 'Josefin Sans', sans-serif;
-      background: -webkit-linear-gradient(#7f7f7f, #000000);
+      font-size: 3em;
+      font-weight: bold;
+      text-align: center;
+      background: linear-gradient(
+        90deg,
+        #0077ff,
+        #00e7df,
+        #ff007e,
+        #ff1834,
+        #ffc900
+      );
+      background-size: 300% 100%; /* Increase size for more pronounced effect */
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.222);
+      animation: animate-gradient 10s linear infinite alternate; /* Faster animation */
+    }
+
+    @keyframes animate-gradient {
+      0% {
+        background-position: 0% 0%;
+      }
+      50% {
+        background-position: 100% 0%;
+      }
+      100% {
+        background-position: 0% 0%;
+      }
     }
   }
 
@@ -67,14 +101,6 @@ body.dark {
   header {
     background-repeat: no-repeat;
     background-attachment: fixed;
-
-    h1 {
-      font-family: 'Josefin Sans', sans-serif;
-      background: -webkit-linear-gradient(#ffffff, #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.183);
-    }
   }
 
   main {

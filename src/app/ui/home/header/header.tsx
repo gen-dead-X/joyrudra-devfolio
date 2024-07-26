@@ -40,7 +40,7 @@ export default function Header() {
       <BrandingBlob />
 
       {/* Background */}
-      <div className="explore-bg absolute h-[300vh] w-[200vw]" />
+      <div className="explore-bg absolute top-0 h-[200vh] w-[200vw]" />
 
       <div className="header-text relative z-10 flex flex-col items-center justify-center gap-10">
         <motion.p
@@ -55,7 +55,6 @@ export default function Header() {
         <motion.h1
           initial="hidden"
           animate="visible"
-          transition={{ staggerChildren: 0.1, delayChildren: 1 }}
           className="text-8xl font-bold uppercase lg:text-[12rem] xl:text-[16rem]"
         >
           {headerText.split('').map(letter => {
