@@ -60,8 +60,8 @@ export default function CircleCursor({ targets }: Props) {
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      x.set(event.clientX - 20);
-      y.set(event.clientY - 20);
+      x.set(event.clientX - 40);
+      y.set(event.clientY - 40);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
