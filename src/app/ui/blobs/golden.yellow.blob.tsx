@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 export default function GoldenYellowBlob() {
+  const { innerHeight, innerWidth } = window as Window;
+
   return (
     <motion.img
       className="absolute z-[11] h-[20rem] w-[20rem] cursor-grab active:cursor-grabbing"
@@ -9,8 +11,8 @@ export default function GoldenYellowBlob() {
       dragConstraints={{
         left: 0,
         top: 0,
-        right: window.innerWidth - 300,
-        bottom: window.innerHeight - 300,
+        right: innerWidth - 300,
+        bottom: innerHeight - 300,
       }}
       draggable
       dragElastic={1}

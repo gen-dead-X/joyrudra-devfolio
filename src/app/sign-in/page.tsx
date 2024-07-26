@@ -20,6 +20,7 @@ import { useQuery } from '@tanstack/react-query';
 import { phudu } from '../fonts/fonts';
 
 import './_signin.scoped.scss';
+import CircleLoader from '../ui/global/loaders/moon.loader/circle.loader';
 
 type LogInType = {
   email: string;
@@ -71,6 +72,10 @@ export default function SignIn() {
       window.close();
     }
   }, [router]);
+
+  if (isOAuthPending) {
+    return <CircleLoader />;
+  }
 
   return (
     <SignInUpLayout>

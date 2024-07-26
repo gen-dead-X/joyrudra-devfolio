@@ -22,9 +22,6 @@ const popInVariants = {
     },
   },
 };
-
-//Added Cursor
-
 const myselfVariation: Variants = {
   hidden: {
     opacity: 0,
