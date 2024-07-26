@@ -6,7 +6,12 @@ body {
   .circle-cursor {
     mix-blend-mode: difference;
     background-color: black;
+    // transition: all 0.3s ease-in;
   }
+
+  // .circle-cursor-interacting {
+  //   scale: 1.2;
+  // }
 
   .explore-bg {
     background: linear-gradient(135deg, #f3f3f3 1%, #ffffff 25%);

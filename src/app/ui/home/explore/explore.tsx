@@ -54,12 +54,12 @@ export default function Explore() {
       id="explore"
       className="snap-section relative z-[4] flex flex-col items-center gap-10 p-5"
     >
-      <div className="relative flex h-full w-full pt-28">
-        <CircleCursor />
+      <div className="relative flex h-full w-full pt-28 md:pt-0">
+        <CircleCursor targets=".target" />
 
         <div
           className={
-            'absolute z-[10] flex h-full w-full flex-col items-center gap-10'
+            'absolute z-[10] flex h-full w-full flex-col items-center justify-between gap-10'
           }
         >
           <motion.p
@@ -70,7 +70,7 @@ export default function Explore() {
           >
             <StaggeringTextAnimation
               text={'MYSELF'}
-              className="inline-block"
+              className="target inline-block"
               variants={myselfVariation}
             />
           </motion.p>
@@ -85,7 +85,7 @@ export default function Explore() {
             >
               <StaggeringTextAnimation
                 text={firstName}
-                className="inline-block"
+                className="target inline-block"
                 variants={popInVariants}
               />
             </motion.p>
@@ -97,7 +97,7 @@ export default function Explore() {
             >
               <StaggeringTextAnimation
                 text={lastName}
-                className="inline-block"
+                className="target inline-block"
                 variants={popInVariants}
               />
             </motion.p>

@@ -11,6 +11,7 @@ export default function ContactButton({ isContainerView }: Readonly<Props>) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0, y: 100 }}
+      whileHover={{ scale: 1.2 }}
       animate={isContainerView && { opacity: 1, scale: 1, y: 0 }}
       transition={{
         delay: 2,
@@ -19,7 +20,7 @@ export default function ContactButton({ isContainerView }: Readonly<Props>) {
         stiffness: 500,
         damping: 30,
       }}
-      className="flex h-[12rem] w-[12rem] items-center justify-center rounded-full bg-black dark:bg-white"
+      className="target flex h-[12rem] w-[12rem] items-center justify-center rounded-full bg-black dark:bg-white"
     >
       <motion.button
         type="button"
