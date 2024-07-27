@@ -1,22 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useQuery } from '@tanstack/react-query';
-
-import { UserContext } from '@/app/context/user.content';
-import urls from '@/shared/enums/urls';
-import type { Profile } from '@/shared/types/user.type';
-import { useRouter } from 'next/navigation';
-import { Skeleton } from 'antd';
 
 /* Icons */
 import { HiMiniBars2 } from 'react-icons/hi2';
 import { RxCross2 } from 'react-icons/rx';
-import {
-  motion,
-  useMotionValue,
-  useTransform,
-  type Variants,
-} from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 
 import './_navbar.scss';
 import ThemeToggleButton from '../theme/themeToggleButton';
@@ -60,7 +48,6 @@ const liVariants: Variants = {
 };
 
 export default function Navbar() {
-  const { setProfile } = useContext(UserContext);
   const [navActive, setNavActive] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { logout } = useAuth();
@@ -77,43 +64,6 @@ export default function Navbar() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  const navigate = useRouter();
-  const {
-    data: profileData,
-    isPending: isValidationPending,
-    error,
-  } = useQuery<Profile>({
-    queryKey: [urls.profile],
-  });
-
-  useEffect(() => {
-    if (profileData) {
-      setProfile(profileData);
-    }
-
-    if (error) {
-      navigate.push('/sign-in');
-    }
-  }, [profileData]);
-
-  if (!profileData) {
-    return <></>;
-  }
-
-  if (isValidationPending) {
-    return (
-      <Skeleton.Button
-        active={true}
-        size={'default'}
-        shape={'default'}
-        block={true}
-        style={{
-          height: '5rem',
-        }}
-      />
-    );
-  }
 
   return (
     <motion.nav
