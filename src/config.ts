@@ -5,3 +5,5 @@ export default {
   LOGIN_PASSWORD: 'MissBenny',
   SIGN_UP_NAME: 'Spome One',
 };
+
+//Comment
