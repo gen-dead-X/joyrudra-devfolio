@@ -7,8 +7,16 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '@/helpers/api';
 import { SnackbarProvider } from 'notistack';
 import Navbar from './ui/navbar/navbar';
-import GoldenYellowBlob from './ui/blobs/golden.yellow.blob';
+
 import Script from 'next/script';
+import dynamic from 'next/dynamic';
+
+const GoldenYellowBlob = dynamic(
+  () => import('./ui/blobs/golden.yellow.blob'),
+  {
+    ssr: false,
+  }
+);
 
 const inter = Poppins({
   weight: '400',

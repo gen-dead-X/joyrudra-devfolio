@@ -21,7 +21,10 @@ export default function BrandingBlob() {
 
   return (
     <div ref={blobRef} className={'auth-branding'}>
-      <h4 className="text-3xl font-extrabold">{'ME.DEV :)'}</h4>
+      <h4 className="text-3xl font-extrabold">
+        {'WITH'}
+        <span className="text-red-600">❤️!</span>
+      </h4>
     </div>
   );
 }
