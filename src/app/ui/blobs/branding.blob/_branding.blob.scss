@@ -57,6 +57,10 @@ body.dark {
       background: -webkit-linear-gradient(#616161, #000000);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+
+      span {
+        color: red !important;
+      }
     }
 
     &:active {

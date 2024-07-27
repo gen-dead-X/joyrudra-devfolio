@@ -42,8 +42,8 @@ const myselfVariation: Variants = {
 };
 
 export default function Explore() {
-  const firstName = 'MAYBE';
-  const lastName = 'SOMEONE';
+  const firstName = 'JOYRUDRA';
+  const lastName = 'BISWAS';
   const containerRef = useRef<HTMLDivElement>(null);
 
   const isContainerView = useInView(containerRef, { amount: 0.5, once: true });
