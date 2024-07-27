@@ -1,7 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import BrandingBlob from '../../blobs/branding.blob/branding.blob';
+import StaggeringTextAnimation from '../../global/animated.text/staggering.text.animation';
+import { useRef } from 'react';
+import { roboto_slab } from '@/app/fonts/fonts';
 
 const popInVariants = {
   hidden: {
@@ -20,23 +23,36 @@ const popInVariants = {
   },
 };
 
-const containerVariants = {
+const myselfVariation = {
   hidden: {
-    opacity: 1,
+    opacity: 0,
+    scale: 0,
+    x: -10,
   },
   visible: {
     opacity: 1,
+    scale: 1,
+    x: 0,
     transition: {
-      staggerChildren: 0.5,
+      type: 'ease-in',
+      stiffness: 300,
+      damping: 20,
     },
+    letterSpacing: '2px',
   },
 };
 
 export default function Header() {
-  const headerText = 'Paradise';
+  const headerText = 'DEVFOLIO';
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const isContainerView = useInView(containerRef, { amount: 0.5, once: true });
 
   return (
-    <header className="snap-section hero relative z-[2] flex h-[100vh] flex-col justify-center gap-10 overflow-y-visible">
+    <header
+      ref={containerRef}
+      className={`snap-section hero relative z-[2] flex h-[100vh] flex-col justify-center gap-10 overflow-y-visible ${roboto_slab.className}`}
+    >
       <BrandingBlob />
 
       {/* Background */}
@@ -52,18 +68,19 @@ export default function Header() {
           Welcome To
         </motion.p>
 
+        <p className="font-bold">MY</p>
+
         <motion.h1
           initial="hidden"
-          animate="visible"
+          animate={isContainerView ? 'visible' : 'hidden'}
+          transition={{ staggerChildren: 0.05 }}
           className="text-8xl font-bold uppercase lg:text-[12rem] xl:text-[16rem]"
         >
-          {headerText.split('').map(letter => {
-            return (
-              <motion.span variants={popInVariants} key={crypto.randomUUID()}>
-                {letter}
-              </motion.span>
-            );
-          })}
+          <StaggeringTextAnimation
+            className="inline-block"
+            variants={myselfVariation}
+            text={headerText}
+          />
         </motion.h1>
       </div>
 
