@@ -10,6 +10,7 @@ import Navbar from './ui/navbar/navbar';
 
 import Script from 'next/script';
 import dynamic from 'next/dynamic';
+import DynamicIslandNavbar from './ui/dynamic.island/dynamic.island.navbar';
 
 const GoldenYellowBlob = dynamic(
   () => import('./ui/blobs/golden.yellow.blob'),
@@ -40,7 +41,9 @@ export default function RootLayout({
               maxSnack={3}
               className="p-5 text-2xl"
             >
-              <Navbar />
+              {/* <Navbar /> */}
+              <DynamicIslandNavbar />
+
               <GoldenYellowBlob />
               {children}
             </SnackbarProvider>
