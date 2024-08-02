@@ -71,6 +71,7 @@ export default function DynamicIslandNavbar() {
             className={navLinkCommonClassName}
           >
             Menus
+            {/* Hello */}
           </motion.div>
         </motion.div>
         <div className="flex gap-5 px-20 py-5">
