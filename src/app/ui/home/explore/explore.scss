@@ -4,7 +4,7 @@ body {
   }
 
   .circle-cursor {
-    mix-blend-mode: difference;
+    mix-blend-mode: difference !important;
     background-color: black;
     // transition: all 0.3s ease-in;
   }

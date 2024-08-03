@@ -2,7 +2,7 @@ import './_ThemeToggleButton.scss';
 import { useContext } from 'react';
 import { LuSunMedium } from 'react-icons/lu';
 import { UserContext } from '@/app/context/user.content';
-import { MdDarkMode } from 'react-icons/md';
+import { HiMoon } from 'react-icons/hi2';
 import { BsFillCloudMoonFill } from 'react-icons/bs';
 import { motion } from 'framer-motion';
 
@@ -35,7 +35,7 @@ export default function ThemeToggleButton() {
         {!darkMode ? (
           <LuSunMedium className="h-full w-full p-1 hover:text-amber-500" />
         ) : (
-          <BsFillCloudMoonFill className="h-full w-full p-1 hover:text-slate-500" />
+          <HiMoon className="h-full w-full p-1 hover:text-blue-800" />
         )}
       </motion.button>
     </motion.div>
