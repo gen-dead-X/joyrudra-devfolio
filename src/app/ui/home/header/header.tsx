@@ -3,8 +3,9 @@
 import { motion, useInView } from 'framer-motion';
 import BrandingBlob from '../../blobs/branding.blob/branding.blob';
 import StaggeringTextAnimation from '../../global/animated.text/staggering.text.animation';
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { roboto_slab } from '@/app/fonts/fonts';
+import { UserContext } from '@/app/context/user.content';
 
 const popInVariants = {
   hidden: {
@@ -45,6 +46,7 @@ const myselfVariation = {
 export default function Header() {
   const headerText = 'DEVFOLIO';
   const containerRef = useRef<HTMLDivElement>(null);
+  const { darkMode } = useContext(UserContext);
 
   const isContainerView = useInView(containerRef, { amount: 0.5, once: true });
 
@@ -85,7 +87,9 @@ export default function Header() {
       </div>
 
       <motion.img
-        src="./blobs/reddish_blob.png"
+        src={
+          darkMode ? './blobs/reddish_blob.png' : './blobs/light_bg_blob.png'
+        }
         className="left-0 top-0 z-[4] aspect-square w-full md:absolute"
         alt="green_blob"
         animate={{ rotate: [0, 360] }}
