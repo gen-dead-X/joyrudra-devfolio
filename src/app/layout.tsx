@@ -6,7 +6,6 @@ import { UserContextProvider } from './context/user.content';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '@/helpers/api';
 import { SnackbarProvider } from 'notistack';
-import Navbar from './ui/navbar/navbar';
 
 import Script from 'next/script';
 import dynamic from 'next/dynamic';
@@ -42,9 +41,9 @@ export default function RootLayout({
               className="p-5 text-2xl"
             >
               {/* <Navbar /> */}
-              <DynamicIslandNavbar />
+              {/* <DynamicIslandNavbar /> */}
 
-              <GoldenYellowBlob />
+              {/* <GoldenYellowBlob /> */}
               {children}
             </SnackbarProvider>
           </QueryClientProvider>
